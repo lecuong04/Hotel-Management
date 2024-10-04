@@ -85,6 +85,18 @@
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\BookingRoom.cs" />
+    <Compile Include="Models\BookingService.cs" />
+    <Compile Include="Models\BookingServiceDetail.cs" />
+    <Compile Include="Models\ChangeRoom.cs" />
+    <Compile Include="Models\Customer.cs" />
+    <Compile Include="Models\BookingRoomDetail.cs" />
+    <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Invoice.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\Room.cs" />
+    <Compile Include="Models\RoomType.cs" />
+    <Compile Include="Models\Service.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\LoginForm.resx">
@@ -124,7 +136,7 @@
     <Content Include="Resources\Login-Door.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
+    <Folder Include="Models\Extensions\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
