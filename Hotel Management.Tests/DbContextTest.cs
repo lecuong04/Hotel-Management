@@ -1,6 +1,7 @@
 ﻿using Hotel_Management.Contexts;
 using Hotel_Management.Models;
 using NUnit.Framework;
+using NUnit.Framework.Legacy;
 using System;
 using System.Linq;
 
@@ -61,6 +62,48 @@ namespace Hotel_Management.Tests
             cuong.Phone = "0123456789";
             bool result = db.UpdateRow(cuong);
             Assert.Pass(result.ToString());
+        }
+
+        [Test]
+        public void DeleteRows() {
+            Employee test1 = new Employee()
+            {
+                Name = "Test 1",
+                Phone = "1650173488",
+                UniqueNumber = "433711744341",
+                Address = "Test 1",
+                Gender = "Nam",
+                Position = "1",
+                DoW = DateTime.Now,
+            };
+            if (db.AddRow(test1))
+                TestContext.WriteLine(test1.Name);
+            Employee test2 = new Employee() 
+            {
+                Name = "Test 2",
+                Phone = "9456300926",
+                UniqueNumber = "119296133729",
+                Address = "Test 2",
+                Gender = "Nữ",
+                Position = "1",
+                DoW = DateTime.Now,
+            };
+            if (db.AddRow(test2))
+                TestContext.WriteLine(test2.Name);
+            Employee test3 = new Employee() 
+            {
+                Name = "Test 3",
+                Phone = "4032312399",
+                UniqueNumber = "321754829448",
+                Address = "Test 3",
+                Gender = "Nữ",
+                Position = "1",
+                DoW = DateTime.Now,
+            };
+            if (db.AddRow(test3))
+                TestContext.WriteLine(test3.Name);
+            int result = db.DeleteRows<Employee>(x => x.Position == "1");
+            ClassicAssert.AreEqual(3, result);
         }
     }
 }

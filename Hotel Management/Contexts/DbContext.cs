@@ -5,6 +5,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Markup;
 
 namespace Hotel_Management.Contexts
 {
@@ -255,6 +256,63 @@ namespace Hotel_Management.Contexts
             {
 
             }
+            return result;
+        }
+
+        public int DeleteRows<T>(Func<T, bool> predicate) { 
+            int result = 0;
+            Type type = typeof(T);
+            TableAttribute tableAttribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttribute == null)
+                return result;
+            IEnumerable<T> list = GetTable<T>(predicate);
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                foreach (T c in list)
+                {
+                    List<string> where = new List<string>();
+                    PropertyInfo[] properties = type.GetProperties();
+                    foreach (PropertyInfo property in properties) {
+                        ColumnAttribute columnAttribute = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                        if (columnAttribute == null) continue;
+                        object value = property.GetValue(c, null);
+                        Type propertyType = property.PropertyType;
+                        object formarttedValue = null;
+                        if (columnAttribute.IsPrimaryKey)
+                        {
+                            if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
+                                formarttedValue = value;
+                            else if (propertyType == typeof(DateTime))
+                            {
+                                DateTime dt = (DateTime)value;
+                                if (dt.Year == 1)
+                                    continue;
+                                else
+                                    formarttedValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                            }
+                            else if (propertyType == typeof(bool))
+                            {
+                                if ((bool)value)
+                                    formarttedValue = 1;
+                                else
+                                    formarttedValue = 0;
+                            }
+                            else
+                                formarttedValue = $"N'{value}'";
+                            where.Add($"{columnAttribute.Name} = {formarttedValue}");
+                        }
+                    }
+                    cmd.CommandText = $"DELETE FROM {tableAttribute.Name} WHERE {string.Join(", ", where)}";
+                    result += cmd.ExecuteNonQuery();
+                }
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+            catch (Exception ex) { }
             return result;
         }
 
