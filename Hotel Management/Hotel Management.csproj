@@ -112,6 +112,7 @@
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers.cs" />
+    <Compile Include="Models\Account.cs" />
     <Compile Include="Models\BookingRoom.cs" />
     <Compile Include="Models\BookingService.cs" />
     <Compile Include="Models\BookingServiceDetail.cs" />
