@@ -1,8 +1,8 @@
 ﻿using Hotel_Management.Contexts;
 using Hotel_Management.Models;
 using NUnit.Framework;
-using System.Linq;
 using System;
+using System.Linq;
 
 namespace Hotel_Management.Tests
 {
@@ -19,7 +19,7 @@ namespace Hotel_Management.Tests
         }
 
         [Test]
-        public void AddColumn() 
+        public void AddColumn()
         {
             DbContext context = new DbContext();
             context.UseConfigurationManager("DefaultConnection");

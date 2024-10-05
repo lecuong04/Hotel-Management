@@ -10,8 +10,9 @@ namespace Hotel_Management.Contexts
     public class DbContext
     {
         SqlConnection conn;
-        public SqlConnection Connection { 
-            get => conn; 
+        public SqlConnection Connection
+        {
+            get => conn;
             set => conn = value;
         }
 
@@ -103,7 +104,7 @@ namespace Hotel_Management.Contexts
         public bool AddColumn<T>(T data)
         {
             bool result = false;
-            if (data == null) 
+            if (data == null)
                 return false;
             Type type = typeof(T);
             TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
@@ -148,9 +149,9 @@ namespace Hotel_Management.Contexts
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
-            catch (Exception ex) 
-            { 
-            
+            catch (Exception ex)
+            {
+
             }
             return result;
         }
