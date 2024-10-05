@@ -1,6 +1,6 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("DICHVU")]
+    [Table("DICHVU", "MADV")]
     public class Service
     {
         [Column("MADV")]

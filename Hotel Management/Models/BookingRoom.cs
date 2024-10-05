@@ -2,7 +2,7 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("PHIEUDATPHONG")]
+    [Table("PHIEUDATPHONG", "MAPHIEUDATPHONG")]
     public class BookingRoom
     {
         [Column("MAPHIEUDATPHONG")]

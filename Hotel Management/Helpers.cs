@@ -6,10 +6,12 @@ namespace Hotel_Management
     public class TableAttribute : Attribute
     {
         public string Name { get; set; }
+        public string IdentityColumn { get; set; }
 
-        public TableAttribute(string name)
+        public TableAttribute(string name, string identityColumn = "")
         {
             Name = name;
+            IdentityColumn = identityColumn;
         }
     }
 

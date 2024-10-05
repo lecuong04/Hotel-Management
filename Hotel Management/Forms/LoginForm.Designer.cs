@@ -56,6 +56,7 @@
             // txtPassword
             // 
             this.txtPassword.BeforeTouchSize = new System.Drawing.Size(431, 27);
+            this.txtPassword.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtPassword.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPassword.Cursor = System.Windows.Forms.Cursors.Arrow;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -73,6 +74,7 @@
             // txtUsername
             // 
             this.txtUsername.BeforeTouchSize = new System.Drawing.Size(431, 27);
+            this.txtUsername.BorderColor = System.Drawing.SystemColors.ActiveBorder;
             this.txtUsername.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUsername.CharacterCasing = System.Windows.Forms.CharacterCasing.Lower;
             this.txtUsername.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));

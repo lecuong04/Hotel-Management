@@ -1,6 +1,6 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("PHONG")]
+    [Table("PHONG", "MAPHONG")]
     public class Room
     {
         [Column("MAPHONG")]

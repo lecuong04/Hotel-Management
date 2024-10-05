@@ -2,7 +2,7 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("NHANVIEN")]
+    [Table("NHANVIEN", "MANV")]
     public class Employee
     {
         [Column("MANV")]

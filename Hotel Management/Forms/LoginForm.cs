@@ -1,8 +1,11 @@
-﻿using Syncfusion.Windows.Forms;
+﻿using Hotel_Management.Contexts;
+using Hotel_Management.Models;
+using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools;
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Drawing;
+using System.Linq;
 using System.Text.RegularExpressions;
 
 namespace Hotel_Management.Forms
@@ -15,7 +18,7 @@ namespace Hotel_Management.Forms
         {
             InitializeComponent();
 
-            watermark.SetBannerText(txtUsername, new BannerTextInfo() { Text = "Tên đăng nhập", Mode = BannerTextMode.EditMode, Visible = true });
+            watermark.SetBannerText(txtUsername, new BannerTextInfo() { Text = "CCCD", Mode = BannerTextMode.EditMode, Visible = true });
             watermark.SetBannerText(txtPassword, new BannerTextInfo() { Text = "Mật khẩu", Mode = BannerTextMode.EditMode, Visible = true });
         }
 
@@ -24,7 +27,7 @@ namespace Hotel_Management.Forms
             TextBoxExt c = sender as TextBoxExt;
             if (c != null)
             {
-                c.BorderColor = Color.Black;
+                c.BorderColor = SystemColors.ActiveBorder;
                 string text = c.Text;
                 if (!Regex.IsMatch(text, "^[a-z0-9]+$"))
                 {
@@ -46,7 +49,16 @@ namespace Hotel_Management.Forms
             string password = txtPassword.Text;
             if (username.Length != 0 && password.Length != 0)
             {
+                DbContext db = new DbContext();
+                db.UseConfigurationManager("DefaultConnection");
+                int count = db.GetTable<Employee>().Count();
+                if (count == 0)
+                {
 
+                } else
+                {
+
+                }
             }
             else
             {
@@ -67,7 +79,7 @@ namespace Hotel_Management.Forms
         {
             TextBoxExt c = sender as TextBoxExt;
             if (c != null)
-                c.BorderColor = Color.Black;
+                c.BorderColor = SystemColors.ActiveBorder;
         }
     }
 }

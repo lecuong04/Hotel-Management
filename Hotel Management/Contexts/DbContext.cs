@@ -9,36 +9,42 @@ namespace Hotel_Management.Contexts
 {
     public class DbContext
     {
-        public SqlConnection Connection { get; set; }
+        SqlConnection conn;
+        public SqlConnection Connection { 
+            get => conn; 
+            set => conn = value;
+        }
 
         // Sử dụng ConnectionStrings trong app.config
         public DbContext()
         {
-            Connection = new SqlConnection();
+            conn = new SqlConnection();
         }
 
         public void UseConnectionString(string connStr)
         {
-            Connection.ConnectionString = connStr;
+            conn.ConnectionString = connStr;
         }
 
         public void UseConfigurationManager(string name)
         {
-            Connection.ConnectionString = ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            conn.ConnectionString = ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
         public IEnumerable<T> GetTable<T>(Func<T, bool> predicate = null)
         {
-            Type type = typeof(T);
             List<T> result = new List<T>();
+            Type type = typeof(T);
             TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            SqlCommand cmd = Connection.CreateCommand();
+            if (attribute == null)
+                return result;
+            SqlCommand cmd = conn.CreateCommand();
             cmd.CommandText = $"SELECT * FROM {attribute.Name}";
             cmd.CommandType = CommandType.Text;
             try
             {
-                if (Connection.State == ConnectionState.Closed)
-                    Connection.Open();
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
                 PropertyInfo[] properties = type.GetProperties();
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -47,6 +53,8 @@ namespace Hotel_Management.Contexts
                     foreach (PropertyInfo property in properties)
                     {
                         string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                        if (column.Length == 0)
+                            continue;
                         string propertyName = property.Name;
                         object data = null;
                         Type propertyType = property.PropertyType;
@@ -82,9 +90,8 @@ namespace Hotel_Management.Contexts
                     else
                         result.Add(curr);
                 }
-
-                if (Connection.State == ConnectionState.Open)
-                    Connection.Close();
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
             }
             catch (Exception ex)
             {
@@ -93,7 +100,62 @@ namespace Hotel_Management.Contexts
             return result;
         }
 
-        public static bool IsValidConnectionStr(string connStr)
+        public bool AddColumn<T>(T data)
+        {
+            bool result = false;
+            if (data == null) 
+                return false;
+            Type type = typeof(T);
+            TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (attribute == null)
+                return false;
+            List<string> keys = new List<string>();
+            List<object> values = new List<object>();
+
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                if (column.Length == 0 || (column == attribute.IdentityColumn && attribute.IdentityColumn.Length != 0))
+                    continue;
+                object value = property.GetValue(data, null);
+                if (value == null || value.ToString().Length == 0)
+                    continue;
+                keys.Add(column);
+                Type propertyType = property.PropertyType;
+                if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
+                    values.Add(value);
+                else if (propertyType == typeof(DateTime))
+                {
+                    DateTime dt = (DateTime)value;
+                    if (dt.Year == 1)
+                        values.Add("NULL");
+                    else
+                        values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
+                }
+                else
+                    values.Add($"N'{value}'");
+            }
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandText = $"INSERT INTO {attribute.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                if (cmd.ExecuteNonQuery() == 1)
+                    result = true;
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+            catch (Exception ex) 
+            { 
+            
+            }
+            return result;
+        }
+
+        public static bool IsValidConnStr(string connStr)
         {
             using (SqlConnection conn = new SqlConnection(connStr))
             {

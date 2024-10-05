@@ -2,7 +2,7 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("HOADON")]
+    [Table("HOADON", "MAHD")]
     public class Invoice
     {
         [Column("MAHD")]

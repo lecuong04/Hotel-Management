@@ -1,6 +1,6 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("LOAIPHONG")]
+    [Table("LOAIPHONG", "MALOAIPHONG")]
     public class RoomType
     {
         [Column("MALOAIPHONG")]
