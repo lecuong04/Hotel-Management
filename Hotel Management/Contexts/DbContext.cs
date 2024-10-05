@@ -80,6 +80,12 @@ namespace Hotel_Management.Contexts
                         else if (propertyType == typeof(double))
                         {
                             data = double.Parse(reader[column].ToString());
+                        } else if (propertyType == typeof(bool))
+                        {
+                            if (reader[column].ToString() == "1")
+                                data = true;
+                            else
+                                data = false;
                         }
                         property.SetValue(curr, data, null);
                     }
@@ -101,28 +107,27 @@ namespace Hotel_Management.Contexts
             return result;
         }
 
-        public bool AddColumn<T>(T data)
+        public bool AddRow<T>(T data)
         {
             bool result = false;
             if (data == null)
-                return false;
+                return result;
             Type type = typeof(T);
-            TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            if (attribute == null)
-                return false;
+            TableAttribute tableAttribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttribute == null)
+                return result;
             List<string> keys = new List<string>();
             List<object> values = new List<object>();
 
             PropertyInfo[] properties = type.GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
-                if (column.Length == 0 || (column == attribute.IdentityColumn && attribute.IdentityColumn.Length != 0))
+                ColumnAttribute columnAttribute = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                if (columnAttribute == null || columnAttribute.IsIdentity)
                     continue;
                 object value = property.GetValue(data, null);
                 if (value == null || value.ToString().Length == 0)
                     continue;
-                keys.Add(column);
                 Type propertyType = property.PropertyType;
                 if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
                     values.Add(value);
@@ -130,15 +135,28 @@ namespace Hotel_Management.Contexts
                 {
                     DateTime dt = (DateTime)value;
                     if (dt.Year == 1)
-                        values.Add("NULL");
+                    {
+                        continue;
+                    }
                     else
                         values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
                 }
+                else if (propertyType == typeof(bool))
+                {
+                    if ((bool)value)
+                    {
+                        values.Add(1);
+                    } else
+                    {
+                        values.Add(0);
+                    }
+                }
                 else
                     values.Add($"N'{value}'");
+                keys.Add(columnAttribute.Name);
             }
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {attribute.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
+            cmd.CommandText = $"INSERT INTO {tableAttribute.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
             cmd.CommandType = CommandType.Text;
             try
             {
@@ -154,6 +172,19 @@ namespace Hotel_Management.Contexts
 
             }
             return result;
+        }
+
+        public bool UpdateRow<T>(T data)
+        {
+            bool result = false;
+            if (data == null)
+                return result;
+            Type type = typeof(T);
+            TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (attribute == null)
+                return result;
+
+            return false;
         }
 
         public static bool IsValidConnStr(string connStr)

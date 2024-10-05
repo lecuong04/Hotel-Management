@@ -5,9 +5,9 @@ namespace Hotel_Management.Models
     [Table("CHITIETPHIEUDAT")]
     public class BookingRoomDetail
     {
-        [Column("MAPHIEUDATPHONG")]
+        [Column("MAPHIEUDATPHONG", true)]
         public int BookingRoom { get; set; }
-        [Column("MAPHONG")]
+        [Column("MAPHONG", true)]
         public int Room { get; set; }
         [Column("NGAYTRAPHONG")]
         public DateTime CheckoutDate { get; set; }

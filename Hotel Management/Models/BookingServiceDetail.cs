@@ -3,9 +3,9 @@
     [Table("CHITIETPHIEUDV")]
     public class BookingServiceDetail
     {
-        [Column("MAPHIEUDV")]
+        [Column("MAPHIEUDV", true)]
         public int BookingService { get; set; }
-        [Column("MADV")]
+        [Column("MADV", true)]
         public int Service { get; set; }
         [Column("DONGIA")]
         public int Price { get; set; }

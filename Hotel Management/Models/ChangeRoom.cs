@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("DOITRAPHONG", "MADOITRA")]
+    [Table("DOITRAPHONG")]
     public class ChangeRoom
     {
-        [Column("MADOITRA")]
+        [Column("MADOITRA", true, true)]
         public int Id { get; set; }
         [Column("MAPHIEUDATPHONG")]
         public int BookingRoom { get; set; }

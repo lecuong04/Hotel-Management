@@ -1,9 +1,9 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("LOAIPHONG", "MALOAIPHONG")]
+    [Table("LOAIPHONG")]
     public class RoomType
     {
-        [Column("MALOAIPHONG")]
+        [Column("MALOAIPHONG", true, true)]
         public int Id { get; set; }
         [Column("TENLOAIPHONG")]
         public string Name { get; set; }

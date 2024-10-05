@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("KHACHHANG", "MAKH")]
+    [Table("KHACHHANG")]
     public class Customer
     {
-        [Column("MAKH")]
+        [Column("MAKH", true, true)]
         public int Id { get; set; }
         [Column("TENKH")]
         public string Name { get; set; }

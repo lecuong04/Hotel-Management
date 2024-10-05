@@ -6,12 +6,10 @@ namespace Hotel_Management
     public class TableAttribute : Attribute
     {
         public string Name { get; set; }
-        public string IdentityColumn { get; set; }
 
-        public TableAttribute(string name, string identityColumn = "")
+        public TableAttribute(string name)
         {
             Name = name;
-            IdentityColumn = identityColumn;
         }
     }
 
@@ -19,10 +17,14 @@ namespace Hotel_Management
     public class ColumnAttribute : Attribute
     {
         public string Name { get; set; }
+        public bool IsPrimaryKey { get; set; }
+        public bool IsIdentity { get; set; }
 
-        public ColumnAttribute(string name)
+        public ColumnAttribute(string name, bool isPrimaryKey = false, bool isIdentity = false)
         {
             Name = name;
+            IsPrimaryKey = isPrimaryKey;
+            IsIdentity = isIdentity;
         }
     }
 

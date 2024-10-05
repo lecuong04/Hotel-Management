@@ -5,7 +5,7 @@ namespace Hotel_Management.Models
     [Table("TAIKHOAN")]
     public class Account
     {
-        [Column("MANV")]
+        [Column("MANV", true)]
         public int Employee { get; set; }
         [Column("MATKHAU")]
         public string Password { get; set; }
@@ -15,6 +15,8 @@ namespace Hotel_Management.Models
         public DateTime CreatedAt { get; set; }
         [Column("NGAYDOIMK")]
         public DateTime PasswordUpdatedAt { get; set; }
+        [Column("HOATDONG")]
+        public bool IsActive { get; set; }
 
         public Account() { }
     }

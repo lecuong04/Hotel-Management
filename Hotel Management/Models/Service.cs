@@ -1,9 +1,9 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("DICHVU", "MADV")]
+    [Table("DICHVU")]
     public class Service
     {
-        [Column("MADV")]
+        [Column("MADV", true, true)]
         public int Id { get; set; }
         [Column("TENDV")]
         public string Name { get; set; }

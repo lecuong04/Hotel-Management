@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("HOADON", "MAHD")]
+    [Table("HOADON")]
     public class Invoice
     {
-        [Column("MAHD")]
+        [Column("MAHD", true, true)]
         public int Id { get; set; }
         [Column("NGAYLAP")]
         public DateTime InvoiceDate { get; set; }

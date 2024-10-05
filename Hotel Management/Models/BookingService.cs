@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("PHIEUDICHVU", "MAPHIEUDV")]
+    [Table("PHIEUDICHVU")]
     public class BookingService
     {
-        [Column("MAPHIEUDV")]
+        [Column("MAPHIEUDV", true, true)]
         public int Id { get; set; }
         [Column("NGAYLAP")]
         public DateTime BookingDate { get; set; }

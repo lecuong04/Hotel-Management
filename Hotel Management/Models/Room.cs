@@ -1,9 +1,9 @@
 ﻿namespace Hotel_Management.Models
 {
-    [Table("PHONG", "MAPHONG")]
+    [Table("PHONG")]
     public class Room
     {
-        [Column("MAPHONG")]
+        [Column("MAPHONG", true, true)]
         public int Id { get; set; }
         [Column("SOPHONG")]
         public string Name { get; set; } // Số phòng

@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("THANHTOAN", "MATHANHTOAN")]
+    [Table("THANHTOAN")]
     public class Payment
     {
-        [Column("MATHANHTOAN")]
+        [Column("MATHANHTOAN", true, true)]
         public int Id { get; set; }
         [Column("MAHD")]
         public int Invoice { get; set; }

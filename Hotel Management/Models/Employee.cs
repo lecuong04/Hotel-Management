@@ -2,10 +2,10 @@
 
 namespace Hotel_Management.Models
 {
-    [Table("NHANVIEN", "MANV")]
+    [Table("NHANVIEN")]
     public class Employee
     {
-        [Column("MANV")]
+        [Column("MANV", true, true)]
         public int Id { get; set; }
         [Column("TENNV")]
         public string Name { get; set; }
