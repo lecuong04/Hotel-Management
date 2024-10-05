@@ -39,9 +39,11 @@ namespace Hotel_Management.Tests
                 Position = "Trưởng phòng nhân sự",
                 DoW = new DateTime(2024, 04, 02)
             });
-            if (result) { 
+            if (result)
+            {
                 Employee cuong = db.GetTable<Employee>(x => x.UniqueNumber == "031204000632").FirstOrDefault();
-                if (cuong != null) {
+                if (cuong != null)
+                {
                     result = db.AddRow(new Account()
                     {
                         Employee = cuong.Id,
@@ -51,21 +53,23 @@ namespace Hotel_Management.Tests
                     });
                 }
             }
-            Assert.Pass(result.ToString());
+            ClassicAssert.IsTrue(result);
         }
 
         [Test]
-        public void UpdateRow() {
+        public void UpdateRow()
+        {
             Employee cuong = db.GetTable<Employee>(x => x.UniqueNumber == "031204000632").FirstOrDefault();
             cuong.DoW = new DateTime(2024, 04, 01);
             cuong.Gender = "Nữ";
             cuong.Phone = "0123456789";
             bool result = db.UpdateRow(cuong);
-            Assert.Pass(result.ToString());
+            ClassicAssert.IsTrue(result);
         }
 
         [Test]
-        public void DeleteRows() {
+        public void DeleteRows()
+        {
             Employee test1 = new Employee()
             {
                 Name = "Test 1",
@@ -78,7 +82,7 @@ namespace Hotel_Management.Tests
             };
             if (db.AddRow(test1))
                 TestContext.WriteLine(test1.Name);
-            Employee test2 = new Employee() 
+            Employee test2 = new Employee()
             {
                 Name = "Test 2",
                 Phone = "9456300926",
@@ -90,7 +94,7 @@ namespace Hotel_Management.Tests
             };
             if (db.AddRow(test2))
                 TestContext.WriteLine(test2.Name);
-            Employee test3 = new Employee() 
+            Employee test3 = new Employee()
             {
                 Name = "Test 3",
                 Phone = "4032312399",

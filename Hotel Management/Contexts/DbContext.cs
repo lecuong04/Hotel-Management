@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
 using System.Reflection;
-using System.Windows.Markup;
 
 namespace Hotel_Management.Contexts
 {
@@ -38,11 +36,11 @@ namespace Hotel_Management.Contexts
         {
             List<T> result = new List<T>();
             Type type = typeof(T);
-            TableAttribute attribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            if (attribute == null)
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM {attribute.Name}";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name}";
             cmd.CommandType = CommandType.Text;
             try
             {
@@ -58,37 +56,24 @@ namespace Hotel_Management.Contexts
                         string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
                         if (column.Length == 0)
                             continue;
-                        string propertyName = property.Name;
+                        string pName = property.Name;
                         object data = null;
-                        Type propertyType = property.PropertyType;
-                        if (reader[column].ToString().Length == 0)
+                        Type pType = property.PropertyType;
+                        string tmp = reader[column].ToString();
+                        if (tmp.Length == 0)
                             continue;
-                        if (propertyType == typeof(int))
-                        {
-                            data = int.Parse(reader[column].ToString());
-                        }
-                        else if (propertyType == typeof(DateTime))
-                        {
-                            data = DateTime.Parse(reader[column].ToString());
-                        }
-                        else if (propertyType == typeof(string))
-                        {
-                            data = reader[column].ToString();
-                        }
-                        else if (propertyType == typeof(float))
-                        {
-                            data = float.Parse(reader[column].ToString());
-                        }
-                        else if (propertyType == typeof(double))
-                        {
-                            data = double.Parse(reader[column].ToString());
-                        } else if (propertyType == typeof(bool))
-                        {
-                            if (reader[column].ToString() == "1")
-                                data = true;
-                            else
-                                data = false;
-                        }
+                        if (pType == typeof(int))
+                            data = int.Parse(tmp);
+                        else if (pType == typeof(DateTime))
+                            data = DateTime.Parse(tmp);
+                        else if (pType == typeof(string))
+                            data = tmp;
+                        else if (pType == typeof(float))
+                            data = float.Parse(tmp);
+                        else if (pType == typeof(double))
+                            data = double.Parse(tmp);
+                        else if (pType == typeof(bool))
+                            data = bool.Parse(tmp);
                         property.SetValue(curr, data, null);
                     }
                     if (predicate != null)
@@ -102,10 +87,7 @@ namespace Hotel_Management.Contexts
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
-            catch (Exception ex)
-            {
-                
-            }
+            catch (Exception ex) { }
             return result;
         }
 
@@ -115,8 +97,8 @@ namespace Hotel_Management.Contexts
             if (data == null)
                 return result;
             Type type = typeof(T);
-            TableAttribute tableAttribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            if (tableAttribute == null)
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null)
                 return result;
             List<string> keys = new List<string>();
             List<object> values = new List<object>();
@@ -124,16 +106,16 @@ namespace Hotel_Management.Contexts
             PropertyInfo[] properties = type.GetProperties();
             foreach (PropertyInfo property in properties)
             {
-                ColumnAttribute columnAttribute = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-                if (columnAttribute == null || columnAttribute.IsIdentity)
+                ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                if (columnAttr == null || columnAttr.IsIdentity)
                     continue;
                 object value = property.GetValue(data, null);
                 if (value == null || value.ToString().Length == 0)
                     continue;
-                Type propertyType = property.PropertyType;
-                if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
+                Type pType = property.PropertyType;
+                if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
                     values.Add(value);
-                else if (propertyType == typeof(DateTime))
+                else if (pType == typeof(DateTime))
                 {
                     DateTime dt = (DateTime)value;
                     if (dt.Year == 1)
@@ -141,7 +123,7 @@ namespace Hotel_Management.Contexts
                     else
                         values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
                 }
-                else if (propertyType == typeof(bool))
+                else if (pType == typeof(bool))
                 {
                     if ((bool)value)
                         values.Add(1);
@@ -150,24 +132,21 @@ namespace Hotel_Management.Contexts
                 }
                 else
                     values.Add($"N'{value}'");
-                keys.Add(columnAttribute.Name);
+                keys.Add(columnAttr.Name);
             }
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {tableAttribute.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
+            cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
             cmd.CommandType = CommandType.Text;
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
-                if (cmd.ExecuteNonQuery() == 1)
+                if (cmd.ExecuteNonQuery() != 0)
                     result = true;
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
-            catch (Exception ex)
-            {
-                
-            }
+            catch (Exception ex) { }
             return result;
         }
 
@@ -177,94 +156,82 @@ namespace Hotel_Management.Contexts
             if (data == null)
                 return result;
             Type type = typeof(T);
-            TableAttribute tableAttribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            if (tableAttribute == null)
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null)
                 return result;
 
             List<string> sets = new List<string>();
             List<string> where = new List<string>();
 
             PropertyInfo[] properties = type.GetProperties();
-            foreach (PropertyInfo property in properties) 
+            foreach (PropertyInfo property in properties)
             {
-                ColumnAttribute columnAttribute = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-                if (columnAttribute == null) continue;
+                ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                if (columnAttr == null) continue;
                 object value = property.GetValue(data, null);
-                Type propertyType = property.PropertyType;
-                object formarttedValue = null;
-                if (columnAttribute.IsPrimaryKey)
+                Type pType = property.PropertyType;
+                object fValue = null;
+                if (columnAttr.IsPrimaryKey)
                 {
-                    if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
-                        formarttedValue = value;
-                    else if (propertyType == typeof(DateTime))
+                    if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+                        fValue = value;
+                    else if (pType == typeof(DateTime))
                     {
                         DateTime dt = (DateTime)value;
-                        if (dt.Year == 1)
+                        if (dt == new DateTime())
                             continue;
                         else
-                            formarttedValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                            fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
                     }
-                    else if (propertyType == typeof(bool))
-                    {
-                        if ((bool)value)
-                            formarttedValue = 1;
-                        else
-                            formarttedValue = 0;
-                    }
+                    else if (pType == typeof(bool))
+                        fValue = (bool)value ? 1 : 0;
                     else
-                        formarttedValue = $"N'{value}'";
-                    where.Add($"{columnAttribute.Name} = {formarttedValue}");
-                } else
-                {
-                    if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
-                        formarttedValue = value;
-                    else if (propertyType == typeof(DateTime))
-                    {
-                        DateTime dt = (DateTime)value;
-                        if (dt.Year == 1)
-                            continue;
-                        else
-                            formarttedValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
-                    }
-                    else if (propertyType == typeof(bool))
-                    {
-                        if ((bool)value)
-                            formarttedValue = 1;
-                        else
-                            formarttedValue = 0;
-                    }
-                    else
-                        formarttedValue = $"N'{value}'";
-                    sets.Add($"{columnAttribute.Name} = {formarttedValue}");
+                        fValue = $"N'{value}'";
+                    where.Add($"{columnAttr.Name} = {fValue}");
                 }
-            } 
+                else
+                {
+                    if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+                        fValue = value;
+                    else if (pType == typeof(DateTime))
+                    {
+                        DateTime dt = (DateTime)value;
+                        if (dt.Year == 1)
+                            continue;
+                        else
+                            fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                    }
+                    else if (pType == typeof(bool))
+                        fValue = (bool)value ? 1 : 0;
+                    else
+                        fValue = $"N'{value}'";
+                    sets.Add($"{columnAttr.Name} = {fValue}");
+                }
+            }
             if (where.Count == 0)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE {tableAttribute.Name} SET {string.Join(", ", sets)} WHERE {string.Join(", ", where)}";
+            cmd.CommandText = $"UPDATE {tableAttr.Name} SET {string.Join(", ", sets)} WHERE {string.Join(", ", where)}";
             cmd.CommandType = CommandType.Text;
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
-                if (cmd.ExecuteNonQuery() == 1)
+                if (cmd.ExecuteNonQuery() != 0)
                     result = true;
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
-            catch (Exception ex)
-            {
-
-            }
+            catch (Exception ex) { }
             return result;
         }
 
-        public int DeleteRows<T>(Func<T, bool> predicate) { 
+        public int DeleteRows<T>(Func<T, bool> predicate)
+        {
             int result = 0;
             Type type = typeof(T);
-            TableAttribute tableAttribute = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-            if (tableAttribute == null)
-                return result;
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null) return result;
             IEnumerable<T> list = GetTable<T>(predicate);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
@@ -276,37 +243,33 @@ namespace Hotel_Management.Contexts
                 {
                     List<string> where = new List<string>();
                     PropertyInfo[] properties = type.GetProperties();
-                    foreach (PropertyInfo property in properties) {
-                        ColumnAttribute columnAttribute = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-                        if (columnAttribute == null) continue;
+                    foreach (PropertyInfo property in properties)
+                    {
+                        ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                        if (columnAttr == null) continue;
                         object value = property.GetValue(c, null);
-                        Type propertyType = property.PropertyType;
-                        object formarttedValue = null;
-                        if (columnAttribute.IsPrimaryKey)
+                        Type pType = property.PropertyType;
+                        object fValue = null;
+                        if (columnAttr.IsPrimaryKey)
                         {
-                            if (propertyType == typeof(int) || propertyType == typeof(float) || propertyType == typeof(double))
-                                formarttedValue = value;
-                            else if (propertyType == typeof(DateTime))
+                            if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+                                fValue = value;
+                            else if (pType == typeof(DateTime))
                             {
                                 DateTime dt = (DateTime)value;
                                 if (dt.Year == 1)
                                     continue;
                                 else
-                                    formarttedValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                                    fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
                             }
-                            else if (propertyType == typeof(bool))
-                            {
-                                if ((bool)value)
-                                    formarttedValue = 1;
-                                else
-                                    formarttedValue = 0;
-                            }
+                            else if (pType == typeof(bool))
+                                fValue = (bool)value ? 1 : 0;
                             else
-                                formarttedValue = $"N'{value}'";
-                            where.Add($"{columnAttribute.Name} = {formarttedValue}");
+                                fValue = $"N'{value}'";
+                            where.Add($"{columnAttr.Name} = {fValue}");
                         }
                     }
-                    cmd.CommandText = $"DELETE FROM {tableAttribute.Name} WHERE {string.Join(", ", where)}";
+                    cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(", ", where)}";
                     result += cmd.ExecuteNonQuery();
                 }
                 if (conn.State == ConnectionState.Open)
