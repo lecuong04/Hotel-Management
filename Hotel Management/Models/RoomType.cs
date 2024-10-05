@@ -1,10 +1,15 @@
 ﻿namespace Hotel_Management.Models
 {
+    [Table("LOAIPHONG")]
     public class RoomType
     {
+        [Column("MALOAIPHONG")]
         public int Id { get; set; }
+        [Column("TENLOAIPHONG")]
         public string Name { get; set; }
+        [Column("GIA")]
         public int Price { get; set; }
+        [Column("SOLUONGNGUOITOIDA")]
         public int MaxPeople { get; set; }
 
         public RoomType() { }
