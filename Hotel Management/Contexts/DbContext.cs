@@ -12,7 +12,8 @@ namespace Hotel_Management.Contexts
         public SqlConnection Connection { get; set; }
 
         // Sử dụng ConnectionStrings trong app.config
-        public DbContext() { 
+        public DbContext()
+        {
             Connection = new SqlConnection();
         }
 
@@ -47,23 +48,31 @@ namespace Hotel_Management.Contexts
                     {
                         string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
                         string propertyName = property.Name;
-                        object data;
+                        object data = null;
                         Type propertyType = property.PropertyType;
+                        if (reader[column].ToString().Length == 0)
+                            continue;
                         if (propertyType == typeof(int))
                         {
                             data = int.Parse(reader[column].ToString());
-                            Helpers.SetValue(curr, propertyName, data);
                         }
                         else if (propertyType == typeof(DateTime))
                         {
                             data = DateTime.Parse(reader[column].ToString());
-                            Helpers.SetValue(curr, propertyName, data);
                         }
                         else if (propertyType == typeof(string))
                         {
                             data = reader[column].ToString();
-                            Helpers.SetValue(curr, propertyName, data);
                         }
+                        else if (propertyType == typeof(float))
+                        {
+                            data = float.Parse(reader[column].ToString());
+                        }
+                        else if (propertyType == typeof(double))
+                        {
+                            data = double.Parse(reader[column].ToString());
+                        }
+                        property.SetValue(curr, data, null);
                     }
                     if (predicate != null)
                     {
@@ -73,10 +82,13 @@ namespace Hotel_Management.Contexts
                     else
                         result.Add(curr);
                 }
+
+                if (Connection.State == ConnectionState.Open)
+                    Connection.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+
             }
             return result;
         }
