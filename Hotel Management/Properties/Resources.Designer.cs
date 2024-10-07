@@ -63,9 +63,9 @@ namespace Hotel_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Login_01 {
+        internal static System.Drawing.Bitmap key {
             get {
-                object obj = ResourceManager.GetObject("Login-01", resourceCulture);
+                object obj = ResourceManager.GetObject("key", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Hotel_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Login_Door {
+        internal static System.Drawing.Bitmap lock_open {
             get {
-                object obj = ResourceManager.GetObject("Login-Door", resourceCulture);
+                object obj = ResourceManager.GetObject("lock_open", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +83,9 @@ namespace Hotel_Management.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap User_Login {
+        internal static System.Drawing.Bitmap person {
             get {
-                object obj = ResourceManager.GetObject("User-Login", resourceCulture);
+                object obj = ResourceManager.GetObject("person", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

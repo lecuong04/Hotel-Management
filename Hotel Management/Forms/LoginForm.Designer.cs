@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             this.btnLogin = new Syncfusion.WinForms.Controls.SfButton();
             this.txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.txtUsername = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
@@ -39,12 +40,13 @@
             // 
             this.btnLogin.FocusRectangleVisible = true;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.btnLogin.ImageMargin = new System.Windows.Forms.Padding(0);
             this.btnLogin.ImageSize = new System.Drawing.Size(24, 24);
             this.btnLogin.Location = new System.Drawing.Point(319, 90);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Padding = new System.Windows.Forms.Padding(6);
             this.btnLogin.Size = new System.Drawing.Size(130, 44);
-            this.btnLogin.Style.Image = global::Hotel_Management.Properties.Resources.Login_Door;
+            this.btnLogin.Style.Image = global::Hotel_Management.Properties.Resources.lock_open;
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -63,7 +65,7 @@
             this.txtPassword.Location = new System.Drawing.Point(18, 54);
             this.txtPassword.Margin = new System.Windows.Forms.Padding(6);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.NearImage = global::Hotel_Management.Properties.Resources.Login_01;
+            this.txtPassword.NearImage = ((System.Drawing.Image)(resources.GetObject("txtPassword.NearImage")));
             this.txtPassword.PasswordChar = '●';
             this.txtPassword.Size = new System.Drawing.Size(431, 27);
             this.txtPassword.TabIndex = 1;
@@ -83,7 +85,7 @@
             this.txtUsername.Margin = new System.Windows.Forms.Padding(6);
             this.txtUsername.MaxLength = 32;
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.NearImage = global::Hotel_Management.Properties.Resources.User_Login;
+            this.txtUsername.NearImage = global::Hotel_Management.Properties.Resources.person;
             this.txtUsername.Size = new System.Drawing.Size(431, 27);
             this.txtUsername.TabIndex = 0;
             this.txtUsername.ThemeName = "Office2019Colorful";
@@ -105,6 +107,7 @@
             this.MaximizeBox = false;
             this.Name = "LoginForm";
             this.Padding = new System.Windows.Forms.Padding(12);
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Style.InactiveShadowOpacity = ((byte)(0));
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;

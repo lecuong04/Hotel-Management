@@ -1,5 +1,4 @@
-﻿using FontAwesome.Sharp;
-using Hotel_Management.Contexts;
+﻿using Hotel_Management.Contexts;
 using Hotel_Management.Models;
 using Syncfusion.Windows.Forms;
 using Syncfusion.Windows.Forms.Tools;
@@ -22,12 +21,8 @@ namespace Hotel_Management.Forms
         public LoginForm()
         {
             InitializeComponent();
-
-            Icon = System.Drawing.Icon.FromHandle(IconChar.Hotel.ToBitmap(width: 32, height: 32).GetHicon());
-            IconSize = new Size(24, 24);
             watermark.SetBannerText(txtUsername, new BannerTextInfo() { Text = "CCCD", Mode = BannerTextMode.EditMode, Visible = true });
             watermark.SetBannerText(txtPassword, new BannerTextInfo() { Text = "Mật khẩu", Mode = BannerTextMode.EditMode, Visible = true });
-
         }
 
         private void txtUsername_TextChanged(object sender, EventArgs e)
