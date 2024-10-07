@@ -148,6 +148,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\BookingRoomDetail.cs" />
     <Compile Include="Models\Employee.cs" />
+    <Compile Include="Models\Extensions\AccountExt.cs" />
     <Compile Include="Models\Invoice.cs" />
     <Compile Include="Models\Payment.cs" />
     <Compile Include="Models\Room.cs" />
@@ -194,8 +195,6 @@
   <ItemGroup>
     <Content Include="Resources\Login-Door.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Extensions\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

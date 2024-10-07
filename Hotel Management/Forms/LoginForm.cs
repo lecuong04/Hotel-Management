@@ -24,8 +24,7 @@ namespace Hotel_Management.Forms
             InitializeComponent();
 
             Icon = System.Drawing.Icon.FromHandle(IconChar.Hotel.ToBitmap(width: 32, height: 32).GetHicon());
-            IconSize = new Size(20, 20);
-
+            IconSize = new Size(24, 24);
             watermark.SetBannerText(txtUsername, new BannerTextInfo() { Text = "CCCD", Mode = BannerTextMode.EditMode, Visible = true });
             watermark.SetBannerText(txtPassword, new BannerTextInfo() { Text = "Mật khẩu", Mode = BannerTextMode.EditMode, Visible = true });
 

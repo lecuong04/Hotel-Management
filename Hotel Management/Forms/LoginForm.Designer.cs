@@ -37,18 +37,18 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.AutoSize = true;
             this.btnLogin.FocusRectangleVisible = true;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btnLogin.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLogin.Location = new System.Drawing.Point(328, 90);
+            this.btnLogin.ImageSize = new System.Drawing.Size(24, 24);
+            this.btnLogin.Location = new System.Drawing.Point(319, 90);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Padding = new System.Windows.Forms.Padding(6);
-            this.btnLogin.Size = new System.Drawing.Size(121, 44);
+            this.btnLogin.Size = new System.Drawing.Size(130, 44);
             this.btnLogin.Style.Image = global::Hotel_Management.Properties.Resources.Login_Door;
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Đăng nhập";
-            this.btnLogin.TextMargin = new System.Windows.Forms.Padding(0);
+            this.btnLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLogin.TextMargin = new System.Windows.Forms.Padding(3, 0, 0, 0);
             this.btnLogin.UseMnemonic = false;
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -95,6 +95,7 @@
             this.AllowRoundedCorners = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(464, 149);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtPassword);
