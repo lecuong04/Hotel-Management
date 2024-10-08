@@ -52,8 +52,7 @@ namespace Hotel_Management.Forms
             string password = txtPassword.Text;
             if (username.Length != 0 && password.Length != 0)
             {
-                DbContext db = new DbContext();
-                db.UseConfigurationManager("DefaultConnection");
+                DbContext db = new DbContext(DbContext.ConnectionType.ConfigurationManager, "DefaultConnection");
                 int count = db.GetTable<Account>().Count();
                 if (count == 0)
                 {

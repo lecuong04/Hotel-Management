@@ -5,10 +5,45 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Reflection;
 
+namespace Hotel_Management
+{
+    [AttributeUsage(AttributeTargets.Class)]
+    public class TableAttribute : Attribute
+    {
+        public string Name { get; set; }
+
+        public TableAttribute(string name)
+        {
+            Name = name;
+        }
+    }
+
+    [AttributeUsage(AttributeTargets.Property)]
+    public class ColumnAttribute : Attribute
+    {
+        public string Name { get; set; }
+        public bool IsPrimaryKey { get; set; }
+        public bool IsIdentity { get; set; }
+
+        public ColumnAttribute(string name, bool isPrimaryKey = false, bool isIdentity = false)
+        {
+            Name = name;
+            IsPrimaryKey = isPrimaryKey;
+            IsIdentity = isIdentity;
+        }
+    }
+}
+
 namespace Hotel_Management.Contexts
 {
     public class DbContext
     {
+        public enum ConnectionType
+        {
+            ConnectionString,
+            ConfigurationManager
+        }
+
         SqlConnection conn;
         public SqlConnection Connection
         {
@@ -16,20 +51,13 @@ namespace Hotel_Management.Contexts
             set => conn = value;
         }
 
-        public DbContext()
+        public DbContext(ConnectionType type, string text)
         {
             conn = new SqlConnection();
-        }
-
-        public void UseConnectionString(string connStr)
-        {
-            conn.ConnectionString = connStr;
-        }
-
-        // Sử dụng ConnectionStrings trong app.config
-        public void UseConfigurationManager(string name)
-        {
-            conn.ConnectionString = ConfigurationManager.ConnectionStrings[name].ConnectionString;
+            if (type == ConnectionType.ConnectionString)
+                conn.ConnectionString = text;
+            else
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings[text].ConnectionString;
         }
 
         public IEnumerable<T> GetTable<T>(Func<T, bool> predicate = null)
