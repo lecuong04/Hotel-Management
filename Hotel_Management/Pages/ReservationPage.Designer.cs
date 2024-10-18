@@ -195,7 +195,7 @@
             this.sfComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sfComboBox1.BackColor = System.Drawing.Color.White;
             this.sfComboBox1.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfComboBox1.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.sfComboBox1.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDown;
             this.sfComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.sfComboBox1.Location = new System.Drawing.Point(123, 11);
             this.sfComboBox1.Name = "sfComboBox1";

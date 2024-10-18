@@ -36,12 +36,13 @@
             // tabbedMDI
             // 
             this.tabbedMDI.ActiveTabFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabbedMDI.AllowTabGroupCustomizing = false;
             this.tabbedMDI.AttachedTo = this;
+            this.tabbedMDI.CanOverrideStyle = true;
             this.tabbedMDI.CloseButtonBackColor = System.Drawing.Color.White;
             this.tabbedMDI.CloseButtonToolTip = "";
             this.tabbedMDI.CloseButtonVisible = false;
             this.tabbedMDI.DropDownButtonToolTip = "";
-            this.tabbedMDI.Horizontal = false;
             this.tabbedMDI.ImageSize = new System.Drawing.Size(16, 16);
             this.tabbedMDI.NeedUpdateHostedForm = false;
             this.tabbedMDI.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -54,10 +55,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(816, 489);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(844, 541);
             this.Cursor = System.Windows.Forms.Cursors.Default;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.DoubleBuffered = true;
             this.IsMdiContainer = true;
             this.Name = "MainForm";
             this.Padding = new System.Windows.Forms.Padding(0);

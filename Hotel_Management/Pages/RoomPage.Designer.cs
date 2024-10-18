@@ -382,7 +382,6 @@
             this.cboType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboType.BackColor = System.Drawing.Color.White;
             this.cboType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cboType.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.cboType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
             this.cboType.Location = new System.Drawing.Point(524, 7);
             this.cboType.Name = "cboType";
@@ -392,6 +391,7 @@
             this.cboType.Style.ReadOnlyEditorStyle.BackColor = System.Drawing.Color.White;
             this.cboType.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cboType.TabIndex = 3;
+            this.cboType.TabStop = false;
             this.cboType.ThemeName = "Office2016Colorful";
             // 
             // btnRoomAdd
@@ -426,7 +426,6 @@
             this.cboStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboStatus.BackColor = System.Drawing.Color.White;
             this.cboStatus.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cboStatus.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.cboStatus.Location = new System.Drawing.Point(123, 47);
             this.cboStatus.Name = "cboStatus";
             this.cboStatus.Size = new System.Drawing.Size(255, 26);
@@ -434,6 +433,7 @@
             this.cboStatus.Style.ReadOnlyEditorStyle.BackColor = System.Drawing.Color.White;
             this.cboStatus.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cboStatus.TabIndex = 4;
+            this.cboStatus.TabStop = false;
             this.cboStatus.ThemeName = "Office2016Colorful";
             // 
             // RoomPage

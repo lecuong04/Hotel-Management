@@ -122,7 +122,6 @@
             // addPage
             // 
             this.addPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.addPage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.addPage.Controls.Add(this.tableLayoutPanel1);
             this.addPage.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
@@ -131,7 +130,7 @@
             this.addPage.Location = new System.Drawing.Point(2, 26);
             this.addPage.Name = "addPage";
             this.addPage.ShowCloseButton = true;
-            this.addPage.Size = new System.Drawing.Size(796, 422);
+            this.addPage.Size = new System.Drawing.Size(794, 420);
             this.addPage.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPage.TabIndex = 2;
             this.addPage.Text = "Thêm";
@@ -314,7 +313,6 @@
             this.cboCustomerGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCustomerGender.BackColor = System.Drawing.Color.White;
             this.cboCustomerGender.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cboCustomerGender.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.cboCustomerGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCustomerGender.Location = new System.Drawing.Point(123, 87);
             this.cboCustomerGender.Name = "cboCustomerGender";
@@ -326,6 +324,7 @@
             this.cboCustomerGender.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cboCustomerGender.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCustomerGender.TabIndex = 3;
+            this.cboCustomerGender.TabStop = false;
             this.cboCustomerGender.ThemeName = "Office2016Colorful";
             // 
             // cboCustomerNationaity
@@ -334,7 +333,6 @@
             this.cboCustomerNationaity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCustomerNationaity.BackColor = System.Drawing.Color.White;
             this.cboCustomerNationaity.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cboCustomerNationaity.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
             this.cboCustomerNationaity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCustomerNationaity.Location = new System.Drawing.Point(530, 87);
             this.cboCustomerNationaity.Name = "cboCustomerNationaity";
@@ -346,6 +344,7 @@
             this.cboCustomerNationaity.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.cboCustomerNationaity.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCustomerNationaity.TabIndex = 6;
+            this.cboCustomerNationaity.TabStop = false;
             this.cboCustomerNationaity.ThemeName = "Office2016Colorful";
             // 
             // sfDateTimeEdit1

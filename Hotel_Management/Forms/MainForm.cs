@@ -26,6 +26,7 @@ namespace Hotel_Management.Forms
         CustomerPage customerPage = new CustomerPage(db);
         ReservationPage reservationPage = new ReservationPage(db);
         EmployeePage employeePage = new EmployeePage(db);
+        AccountPage accountPage = new AccountPage(db);
 
         Account account;
 
@@ -57,7 +58,9 @@ namespace Hotel_Management.Forms
             customerPage.MdiParent = this;
             reservationPage.MdiParent = this;
             employeePage.MdiParent = this;
+            accountPage.MdiParent = this;
 
+            accountPage.Show();
             employeePage.Show();
             reservationPage.Show();
             customerPage.Show();

@@ -86,6 +86,12 @@
     <Compile Include="Models\Service.cs" />
     <Compile Include="Models\UsingService.cs" />
     <Compile Include="Models\UsingServiceDetail.cs" />
+    <Compile Include="Pages\AccountPage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\AccountPage.Designer.cs">
+      <DependentUpon>AccountPage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\CustomerPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -122,6 +128,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\AccountPage.resx">
+      <DependentUpon>AccountPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\CustomerPage.resx">
       <DependentUpon>CustomerPage.cs</DependentUpon>
@@ -160,6 +169,9 @@
   <ItemGroup>
     <PackageReference Include="BCrypt.Net-Next">
       <Version>4.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Core.WinForms">
+      <Version>27.1.53</Version>
     </PackageReference>
     <PackageReference Include="Syncfusion.Edit.Windows">
       <Version>27.1.53</Version>

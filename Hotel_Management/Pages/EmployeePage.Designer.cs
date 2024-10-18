@@ -304,7 +304,7 @@
             this.cboGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.cboGender.BackColor = System.Drawing.Color.White;
             this.cboGender.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.cboGender.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDownList;
+            this.cboGender.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDown;
             this.cboGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
             this.cboGender.Location = new System.Drawing.Point(123, 87);
             this.cboGender.Name = "cboGender";
