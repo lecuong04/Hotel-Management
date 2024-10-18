@@ -63,16 +63,16 @@
             // customerTabControl
             // 
             this.customerTabControl.ActiveTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
-            this.customerTabControl.BeforeTouchSize = new System.Drawing.Size(800, 450);
+            this.customerTabControl.BeforeTouchSize = new System.Drawing.Size(798, 448);
             this.customerTabControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.customerTabControl.BorderVisible = true;
             this.customerTabControl.Controls.Add(this.listPage);
             this.customerTabControl.Controls.Add(this.addPage);
             this.customerTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.customerTabControl.Location = new System.Drawing.Point(0, 0);
+            this.customerTabControl.Location = new System.Drawing.Point(2, 2);
             this.customerTabControl.Name = "customerTabControl";
             this.customerTabControl.RotateTextWhenVertical = true;
-            this.customerTabControl.Size = new System.Drawing.Size(800, 450);
+            this.customerTabControl.Size = new System.Drawing.Size(798, 448);
             this.customerTabControl.TabIndex = 1;
             this.customerTabControl.TabStyle = typeof(Syncfusion.Windows.Forms.Tools.TabRendererOffice2016White);
             this.customerTabControl.ThemeName = "TabRendererOffice2016White";
@@ -90,7 +90,7 @@
             this.listPage.Margin = new System.Windows.Forms.Padding(0);
             this.listPage.Name = "listPage";
             this.listPage.ShowCloseButton = true;
-            this.listPage.Size = new System.Drawing.Size(796, 422);
+            this.listPage.Size = new System.Drawing.Size(794, 420);
             this.listPage.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listPage.TabIndex = 1;
             this.listPage.Text = "Danh sách";
@@ -111,9 +111,11 @@
             this.customerDataGrid.Name = "customerDataGrid";
             this.customerDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
             this.customerDataGrid.PreviewRowHeight = 42;
-            this.customerDataGrid.Size = new System.Drawing.Size(796, 422);
+            this.customerDataGrid.Size = new System.Drawing.Size(794, 420);
             this.customerDataGrid.Style.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.customerDataGrid.Style.CellStyle.Font.Size = 10F;
             this.customerDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.customerDataGrid.Style.HeaderStyle.Font.Size = 10F;
             this.customerDataGrid.TabIndex = 0;
             this.customerDataGrid.Text = "sfDataGrid2";
             // 
@@ -392,7 +394,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.customerTabControl);
             this.Name = "CustomerPage";
-            this.Padding = new System.Windows.Forms.Padding(0);
+            this.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.Style.InactiveShadowOpacity = ((byte)(0));
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;

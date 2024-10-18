@@ -52,17 +52,17 @@
             // reservationTabControl
             // 
             this.reservationTabControl.ActiveTabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.reservationTabControl.BeforeTouchSize = new System.Drawing.Size(800, 450);
+            this.reservationTabControl.BeforeTouchSize = new System.Drawing.Size(798, 448);
             this.reservationTabControl.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.reservationTabControl.BorderVisible = true;
             this.reservationTabControl.Controls.Add(this.listPage);
             this.reservationTabControl.Controls.Add(this.addPage);
             this.reservationTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.reservationTabControl.Location = new System.Drawing.Point(0, 0);
+            this.reservationTabControl.Location = new System.Drawing.Point(2, 2);
             this.reservationTabControl.Margin = new System.Windows.Forms.Padding(0);
             this.reservationTabControl.Name = "reservationTabControl";
             this.reservationTabControl.RotateTextWhenVertical = true;
-            this.reservationTabControl.Size = new System.Drawing.Size(800, 450);
+            this.reservationTabControl.Size = new System.Drawing.Size(798, 448);
             this.reservationTabControl.TabIndex = 1;
             this.reservationTabControl.TabStyle = typeof(Syncfusion.Windows.Forms.Tools.TabRendererOffice2016White);
             this.reservationTabControl.ThemeName = "TabRendererOffice2016White";
@@ -78,7 +78,7 @@
             this.listPage.Location = new System.Drawing.Point(2, 26);
             this.listPage.Name = "listPage";
             this.listPage.ShowCloseButton = true;
-            this.listPage.Size = new System.Drawing.Size(796, 422);
+            this.listPage.Size = new System.Drawing.Size(794, 420);
             this.listPage.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listPage.TabIndex = 1;
             this.listPage.Text = "Danh sách";
@@ -98,9 +98,11 @@
             this.reservationDataGrid.Name = "reservationDataGrid";
             this.reservationDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
             this.reservationDataGrid.PreviewRowHeight = 42;
-            this.reservationDataGrid.Size = new System.Drawing.Size(796, 422);
+            this.reservationDataGrid.Size = new System.Drawing.Size(794, 420);
             this.reservationDataGrid.Style.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.reservationDataGrid.Style.CellStyle.Font.Size = 10F;
             this.reservationDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.reservationDataGrid.Style.HeaderStyle.Font.Size = 10F;
             this.reservationDataGrid.TabIndex = 0;
             this.reservationDataGrid.Text = "sfDataGrid1";
             // 
@@ -256,7 +258,7 @@
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.reservationTabControl);
             this.Name = "ReservationPage";
-            this.Padding = new System.Windows.Forms.Padding(0);
+            this.Padding = new System.Windows.Forms.Padding(2, 2, 0, 0);
             this.Style.InactiveShadowOpacity = ((byte)(0));
             this.Style.MdiChild.IconHorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.Style.MdiChild.IconVerticalAlignment = System.Windows.Forms.VisualStyles.VerticalAlignment.Center;

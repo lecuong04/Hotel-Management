@@ -92,6 +92,12 @@
     <Compile Include="Pages\CustomerPage.Designer.cs">
       <DependentUpon>CustomerPage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pages\EmployeePage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pages\EmployeePage.Designer.cs">
+      <DependentUpon>EmployeePage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pages\ReservationPage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\CustomerPage.resx">
       <DependentUpon>CustomerPage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pages\EmployeePage.resx">
+      <DependentUpon>EmployeePage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pages\ReservationPage.resx">
       <DependentUpon>ReservationPage.cs</DependentUpon>
