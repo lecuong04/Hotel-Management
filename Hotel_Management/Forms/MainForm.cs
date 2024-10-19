@@ -1,25 +1,12 @@
 ﻿using Hotel_Management.Models;
 using Hotel_Management.Pages;
 using Syncfusion.WinForms.Controls;
-using System.Runtime.InteropServices;
-using System;
 using System.Windows.Forms;
-using System.Drawing;
-using System.Security.Cryptography;
 
 namespace Hotel_Management.Forms
 {
     public partial class MainForm : SfForm
     {
-        [DllImport("user32.dll")]
-        private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
-
-        [DllImport("user32.dll")]
-        private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
-
-        private const int GWL_EXSTYLE = -20;
-        private const int WS_EX_CLIENTEDGE = 0x200;
-
         static DbContext db = new DbContext(DbContext.ConnectionType.ConfigurationManager, "DefaultConnection");
 
         RoomPage roomPage = new RoomPage(db);
@@ -34,24 +21,10 @@ namespace Hotel_Management.Forms
         {
             this.account = account;
             InitializeComponent();
-
-            foreach (Control c in Controls)
-            {
-                if (c is MdiClient)
-                {
-                    c.BackColor = Color.AntiqueWhite;
-                    c.Dock = DockStyle.None;
-                    int window = GetWindowLong(c.Handle, GWL_EXSTYLE);
-                    window &= ~WS_EX_CLIENTEDGE;
-                    SetWindowLong(c.Handle, GWL_EXSTYLE, window);
-                    c.Dock = DockStyle.Fill;
-                }
-            }
         }
 
         private void MainForm_Load(object sender, System.EventArgs e)
         {
-            this.SetBevel(false);
             tabbedMDI.TabControlAdded += TabbedMDI_TabControlAdded;
 
             roomPage.MdiParent = this;
@@ -71,7 +44,16 @@ namespace Hotel_Management.Forms
         {
             args.TabControl.Alignment = TabAlignment.Left;
             args.TabControl.RotateTextWhenVertical = true;
-            args.TabControl.BorderStyle = BorderStyle.None;
+        }
+
+        private void MainForm_Activated(object sender, System.EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.Sizable;
+        }
+
+        private void MainForm_Deactivate(object sender, System.EventArgs e)
+        {
+            FormBorderStyle = FormBorderStyle.FixedSingle;
         }
     }
 }

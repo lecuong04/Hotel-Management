@@ -1,7 +1,7 @@
-﻿using Hotel_Management.ViewModels;
+﻿using Hotel_Management.Models;
+using Hotel_Management.ViewModels;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.DataGrid;
-using Syncfusion.WinForms.ListView;
 
 namespace Hotel_Management.Pages
 {
@@ -22,11 +22,16 @@ namespace Hotel_Management.Pages
             roomDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Type", HeaderText = "Loại phòng" });
             roomDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Price", HeaderText = "Giá", Format = "C0" });
             roomDataGrid.Columns.Add(new GridTextColumn() { MappingName = "MaxPeople", HeaderText = "Tối đa" });
+
+            roomTypeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Name", HeaderText = "Loại phòng" });
+            roomTypeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Price", HeaderText = "Giá tiền", Format = "C0" });
+            roomTypeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "MaxPeople", HeaderText = "Số người tối đa" });
         }
 
         private void listPage_Enter(object sender, System.EventArgs e)
         {
             roomDataGrid.DataSource = RoomViewModel.GetRooms(db);
+            roomTypeDataGrid.DataSource = db.GetTable<RoomType>();
         }
     }
 }

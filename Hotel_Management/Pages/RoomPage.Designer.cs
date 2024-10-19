@@ -30,7 +30,9 @@
         {
             this.roomTabControl = new Syncfusion.Windows.Forms.Tools.TabControlAdv();
             this.listPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
+            this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.roomDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
+            this.roomTypeDataGrid = new Syncfusion.WinForms.DataGrid.SfDataGrid();
             this.addPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -51,10 +53,41 @@
             this.btnRoomAdd = new Syncfusion.WinForms.Controls.SfButton();
             this.autoLabel15 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.cboStatus = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.modPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
+            this.autoLabel1 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel3 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel2 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel4 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.cboRoomType = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.btnModType = new Syncfusion.WinForms.Controls.SfButton();
+            this.txtModType = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.numModMax = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
+            this.numModPrice = new Syncfusion.Windows.Forms.Tools.NumericUpDownExt();
+            this.btnTypeSave = new Syncfusion.WinForms.Controls.SfButton();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
+            this.cboRoom = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.autoLabel5 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel6 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel7 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.autoLabel8 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.txtModRoom = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.cboModType = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.cboModStatus = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.btnModRoom = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnSaveRoom = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.roomTabControl)).BeginInit();
             this.roomTabControl.SuspendLayout();
             this.listPage.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
+            this.splitContainer.Panel1.SuspendLayout();
+            this.splitContainer.Panel2.SuspendLayout();
+            this.splitContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.roomDataGrid)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeDataGrid)).BeginInit();
             this.addPage.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -67,6 +100,20 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRoom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboType)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus)).BeginInit();
+            this.modPage.SuspendLayout();
+            this.tableLayoutPanel2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.tableLayoutPanel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRoomType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numModMax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numModPrice)).BeginInit();
+            this.groupBox4.SuspendLayout();
+            this.tableLayoutPanel6.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModRoom)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModType)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModStatus)).BeginInit();
             this.SuspendLayout();
             // 
             // roomTabControl
@@ -77,6 +124,7 @@
             this.roomTabControl.BorderVisible = true;
             this.roomTabControl.Controls.Add(this.listPage);
             this.roomTabControl.Controls.Add(this.addPage);
+            this.roomTabControl.Controls.Add(this.modPage);
             this.roomTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.roomTabControl.Location = new System.Drawing.Point(2, 2);
             this.roomTabControl.Name = "roomTabControl";
@@ -90,7 +138,7 @@
             // listPage
             // 
             this.listPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.listPage.Controls.Add(this.roomDataGrid);
+            this.listPage.Controls.Add(this.splitContainer);
             this.listPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.listPage.Image = null;
             this.listPage.ImageSize = new System.Drawing.Size(16, 16);
@@ -104,6 +152,23 @@
             this.listPage.ThemesEnabled = false;
             this.listPage.Enter += new System.EventHandler(this.listPage_Enter);
             // 
+            // splitContainer
+            // 
+            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer.Name = "splitContainer";
+            // 
+            // splitContainer.Panel1
+            // 
+            this.splitContainer.Panel1.Controls.Add(this.roomDataGrid);
+            // 
+            // splitContainer.Panel2
+            // 
+            this.splitContainer.Panel2.Controls.Add(this.roomTypeDataGrid);
+            this.splitContainer.Size = new System.Drawing.Size(794, 420);
+            this.splitContainer.SplitterDistance = 550;
+            this.splitContainer.TabIndex = 7;
+            // 
             // roomDataGrid
             // 
             this.roomDataGrid.AccessibleName = "Table";
@@ -116,14 +181,34 @@
             this.roomDataGrid.Location = new System.Drawing.Point(0, 0);
             this.roomDataGrid.Name = "roomDataGrid";
             this.roomDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
-            this.roomDataGrid.Size = new System.Drawing.Size(794, 420);
-            this.roomDataGrid.Style.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.roomDataGrid.Size = new System.Drawing.Size(550, 420);
             this.roomDataGrid.Style.CellStyle.Font.Size = 10F;
             this.roomDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.roomDataGrid.Style.HeaderStyle.Font.Size = 10F;
-            this.roomDataGrid.TabIndex = 0;
+            this.roomDataGrid.TabIndex = 7;
             this.roomDataGrid.Text = "sfDataGrid1";
             this.roomDataGrid.ThemeName = "Office2016Colorful";
+            // 
+            // roomTypeDataGrid
+            // 
+            this.roomTypeDataGrid.AccessibleName = "Table";
+            this.roomTypeDataGrid.AllowEditing = false;
+            this.roomTypeDataGrid.AllowFiltering = true;
+            this.roomTypeDataGrid.AllowResizingColumns = true;
+            this.roomTypeDataGrid.AutoGenerateColumns = false;
+            this.roomTypeDataGrid.AutoSizeColumnsMode = Syncfusion.WinForms.DataGrid.Enums.AutoSizeColumnsMode.AllCells;
+            this.roomTypeDataGrid.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.roomTypeDataGrid.Location = new System.Drawing.Point(0, 0);
+            this.roomTypeDataGrid.Name = "roomTypeDataGrid";
+            this.roomTypeDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
+            this.roomTypeDataGrid.Size = new System.Drawing.Size(240, 420);
+            this.roomTypeDataGrid.Style.CellStyle.Font.Size = 10F;
+            this.roomTypeDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.roomTypeDataGrid.Style.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
+            this.roomTypeDataGrid.Style.HeaderStyle.Font.Size = 10F;
+            this.roomTypeDataGrid.TabIndex = 8;
+            this.roomTypeDataGrid.Text = "sfDataGrid1";
+            this.roomTypeDataGrid.ThemeName = "Office2016Colorful";
             // 
             // addPage
             // 
@@ -436,6 +521,403 @@
             this.cboStatus.TabStop = false;
             this.cboStatus.ThemeName = "Office2016Colorful";
             // 
+            // modPage
+            // 
+            this.modPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.modPage.Controls.Add(this.tableLayoutPanel2);
+            this.modPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
+            this.modPage.Image = null;
+            this.modPage.ImageSize = new System.Drawing.Size(16, 16);
+            this.modPage.Location = new System.Drawing.Point(2, 26);
+            this.modPage.Name = "modPage";
+            this.modPage.ShowCloseButton = true;
+            this.modPage.Size = new System.Drawing.Size(794, 420);
+            this.modPage.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.modPage.TabIndex = 3;
+            this.modPage.Text = "Sửa";
+            this.modPage.ThemesEnabled = true;
+            // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel2.Controls.Add(this.groupBox3, 0, 0);
+            this.tableLayoutPanel2.Controls.Add(this.groupBox4, 0, 1);
+            this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 420);
+            this.tableLayoutPanel2.TabIndex = 0;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.tableLayoutPanel3);
+            this.groupBox3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox3.Location = new System.Drawing.Point(3, 3);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(788, 204);
+            this.groupBox3.TabIndex = 0;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Loại phòng";
+            // 
+            // tableLayoutPanel3
+            // 
+            this.tableLayoutPanel3.ColumnCount = 5;
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel3.Controls.Add(this.autoLabel1, 0, 0);
+            this.tableLayoutPanel3.Controls.Add(this.autoLabel3, 3, 1);
+            this.tableLayoutPanel3.Controls.Add(this.autoLabel2, 3, 0);
+            this.tableLayoutPanel3.Controls.Add(this.autoLabel4, 3, 2);
+            this.tableLayoutPanel3.Controls.Add(this.cboRoomType, 1, 0);
+            this.tableLayoutPanel3.Controls.Add(this.btnModType, 1, 1);
+            this.tableLayoutPanel3.Controls.Add(this.txtModType, 4, 0);
+            this.tableLayoutPanel3.Controls.Add(this.numModMax, 4, 1);
+            this.tableLayoutPanel3.Controls.Add(this.numModPrice, 4, 2);
+            this.tableLayoutPanel3.Controls.Add(this.btnTypeSave, 4, 3);
+            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
+            this.tableLayoutPanel3.RowCount = 5;
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel3.Size = new System.Drawing.Size(782, 179);
+            this.tableLayoutPanel3.TabIndex = 0;
+            // 
+            // autoLabel1
+            // 
+            this.autoLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel1.Location = new System.Drawing.Point(3, 10);
+            this.autoLabel1.Name = "autoLabel1";
+            this.autoLabel1.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel1.TabIndex = 0;
+            this.autoLabel1.Text = "Loại phòng";
+            this.autoLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel1.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel3
+            // 
+            this.autoLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel3.Location = new System.Drawing.Point(404, 50);
+            this.autoLabel3.Name = "autoLabel3";
+            this.autoLabel3.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel3.TabIndex = 2;
+            this.autoLabel3.Text = "Tối đa";
+            this.autoLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel3.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel2
+            // 
+            this.autoLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel2.Location = new System.Drawing.Point(404, 10);
+            this.autoLabel2.Name = "autoLabel2";
+            this.autoLabel2.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel2.TabIndex = 1;
+            this.autoLabel2.Text = "Tên loại";
+            this.autoLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel2.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel4
+            // 
+            this.autoLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel4.Location = new System.Drawing.Point(404, 90);
+            this.autoLabel4.Name = "autoLabel4";
+            this.autoLabel4.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel4.TabIndex = 3;
+            this.autoLabel4.Text = "Giá phòng";
+            this.autoLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel4.ThemeName = "Office2016Colorful";
+            // 
+            // cboRoomType
+            // 
+            this.cboRoomType.AllowDropDownResize = false;
+            this.cboRoomType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboRoomType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboRoomType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoomType.Location = new System.Drawing.Point(123, 7);
+            this.cboRoomType.Name = "cboRoomType";
+            this.cboRoomType.Size = new System.Drawing.Size(255, 26);
+            this.cboRoomType.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoomType.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoomType.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboRoomType.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoomType.TabIndex = 4;
+            this.cboRoomType.TabStop = false;
+            this.cboRoomType.ThemeName = "Office2016Colorful";
+            // 
+            // btnModType
+            // 
+            this.btnModType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModType.AutoSize = true;
+            this.btnModType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnModType.Location = new System.Drawing.Point(123, 44);
+            this.btnModType.Name = "btnModType";
+            this.btnModType.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.btnModType.Size = new System.Drawing.Size(255, 31);
+            this.btnModType.TabIndex = 5;
+            this.btnModType.Text = "Sửa";
+            this.btnModType.ThemeName = "Office2016Colorful";
+            // 
+            // txtModType
+            // 
+            this.txtModType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModType.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtModType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModType.Location = new System.Drawing.Point(524, 7);
+            this.txtModType.Name = "txtModType";
+            this.txtModType.Size = new System.Drawing.Size(255, 26);
+            this.txtModType.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModType.TabIndex = 6;
+            this.txtModType.ThemeName = "Office2016Colorful";
+            // 
+            // numModMax
+            // 
+            this.numModMax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numModMax.BackColor = System.Drawing.Color.White;
+            this.numModMax.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.numModMax.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.numModMax.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numModMax.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.numModMax.Location = new System.Drawing.Point(524, 47);
+            this.numModMax.Name = "numModMax";
+            this.numModMax.Size = new System.Drawing.Size(255, 26);
+            this.numModMax.TabIndex = 7;
+            this.numModMax.ThemeName = "Office2016Colorful";
+            this.numModMax.VisualStyle = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
+            // 
+            // numModPrice
+            // 
+            this.numModPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.numModPrice.BackColor = System.Drawing.Color.White;
+            this.numModPrice.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.numModPrice.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.numModPrice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.numModPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.numModPrice.Location = new System.Drawing.Point(524, 87);
+            this.numModPrice.Name = "numModPrice";
+            this.numModPrice.Size = new System.Drawing.Size(255, 26);
+            this.numModPrice.TabIndex = 8;
+            this.numModPrice.ThemeName = "Office2016Colorful";
+            this.numModPrice.VisualStyle = Syncfusion.Windows.Forms.VisualStyle.Office2016Colorful;
+            // 
+            // btnTypeSave
+            // 
+            this.btnTypeSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTypeSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnTypeSave.Location = new System.Drawing.Point(524, 126);
+            this.btnTypeSave.Name = "btnTypeSave";
+            this.btnTypeSave.Size = new System.Drawing.Size(255, 28);
+            this.btnTypeSave.TabIndex = 9;
+            this.btnTypeSave.Text = "Lưu";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.tableLayoutPanel6);
+            this.groupBox4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox4.Location = new System.Drawing.Point(3, 213);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(788, 204);
+            this.groupBox4.TabIndex = 1;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Phòng";
+            // 
+            // tableLayoutPanel6
+            // 
+            this.tableLayoutPanel6.ColumnCount = 5;
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 120F));
+            this.tableLayoutPanel6.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel6.Controls.Add(this.cboRoom, 1, 0);
+            this.tableLayoutPanel6.Controls.Add(this.autoLabel5, 0, 0);
+            this.tableLayoutPanel6.Controls.Add(this.autoLabel6, 3, 0);
+            this.tableLayoutPanel6.Controls.Add(this.autoLabel7, 3, 1);
+            this.tableLayoutPanel6.Controls.Add(this.autoLabel8, 3, 2);
+            this.tableLayoutPanel6.Controls.Add(this.txtModRoom, 4, 0);
+            this.tableLayoutPanel6.Controls.Add(this.cboModType, 4, 1);
+            this.tableLayoutPanel6.Controls.Add(this.cboModStatus, 4, 2);
+            this.tableLayoutPanel6.Controls.Add(this.btnModRoom, 1, 1);
+            this.tableLayoutPanel6.Controls.Add(this.btnSaveRoom, 4, 3);
+            this.tableLayoutPanel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel6.Location = new System.Drawing.Point(3, 22);
+            this.tableLayoutPanel6.Name = "tableLayoutPanel6";
+            this.tableLayoutPanel6.RowCount = 5;
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle());
+            this.tableLayoutPanel6.Size = new System.Drawing.Size(782, 179);
+            this.tableLayoutPanel6.TabIndex = 0;
+            // 
+            // cboRoom
+            // 
+            this.cboRoom.AllowDropDownResize = false;
+            this.cboRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboRoom.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoom.Location = new System.Drawing.Point(123, 7);
+            this.cboRoom.Name = "cboRoom";
+            this.cboRoom.Size = new System.Drawing.Size(255, 26);
+            this.cboRoom.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoom.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoom.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboRoom.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboRoom.TabIndex = 5;
+            this.cboRoom.TabStop = false;
+            this.cboRoom.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel5
+            // 
+            this.autoLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel5.Location = new System.Drawing.Point(3, 10);
+            this.autoLabel5.Name = "autoLabel5";
+            this.autoLabel5.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel5.TabIndex = 0;
+            this.autoLabel5.Text = "Phòng";
+            this.autoLabel5.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel5.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel6
+            // 
+            this.autoLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel6.Location = new System.Drawing.Point(404, 10);
+            this.autoLabel6.Name = "autoLabel6";
+            this.autoLabel6.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel6.TabIndex = 1;
+            this.autoLabel6.Text = "Số phòng";
+            this.autoLabel6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel6.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel7
+            // 
+            this.autoLabel7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel7.Location = new System.Drawing.Point(404, 50);
+            this.autoLabel7.Name = "autoLabel7";
+            this.autoLabel7.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel7.TabIndex = 2;
+            this.autoLabel7.Text = "Loại phòng";
+            this.autoLabel7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel7.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel8
+            // 
+            this.autoLabel8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel8.Location = new System.Drawing.Point(404, 90);
+            this.autoLabel8.Name = "autoLabel8";
+            this.autoLabel8.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel8.TabIndex = 3;
+            this.autoLabel8.Text = "Trạng thái";
+            this.autoLabel8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel8.ThemeName = "Office2016Colorful";
+            // 
+            // txtModRoom
+            // 
+            this.txtModRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModRoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModRoom.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtModRoom.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModRoom.Location = new System.Drawing.Point(524, 7);
+            this.txtModRoom.Name = "txtModRoom";
+            this.txtModRoom.Size = new System.Drawing.Size(255, 26);
+            this.txtModRoom.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModRoom.TabIndex = 2;
+            this.txtModRoom.ThemeName = "Office2016Colorful";
+            // 
+            // cboModType
+            // 
+            this.cboModType.AllowDropDownResize = false;
+            this.cboModType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboModType.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboModType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModType.Location = new System.Drawing.Point(524, 47);
+            this.cboModType.Name = "cboModType";
+            this.cboModType.Size = new System.Drawing.Size(255, 26);
+            this.cboModType.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModType.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModType.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboModType.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModType.TabIndex = 3;
+            this.cboModType.TabStop = false;
+            this.cboModType.ThemeName = "Office2016Colorful";
+            // 
+            // cboModStatus
+            // 
+            this.cboModStatus.AllowDropDownResize = false;
+            this.cboModStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboModStatus.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboModStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModStatus.Location = new System.Drawing.Point(524, 87);
+            this.cboModStatus.Name = "cboModStatus";
+            this.cboModStatus.Size = new System.Drawing.Size(255, 26);
+            this.cboModStatus.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModStatus.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModStatus.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboModStatus.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.cboModStatus.TabIndex = 4;
+            this.cboModStatus.TabStop = false;
+            this.cboModStatus.ThemeName = "Office2016Colorful";
+            // 
+            // btnModRoom
+            // 
+            this.btnModRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnModRoom.AutoSize = true;
+            this.btnModRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnModRoom.Location = new System.Drawing.Point(123, 44);
+            this.btnModRoom.Name = "btnModRoom";
+            this.btnModRoom.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.btnModRoom.Size = new System.Drawing.Size(255, 31);
+            this.btnModRoom.TabIndex = 1;
+            this.btnModRoom.Text = "Sửa";
+            this.btnModRoom.ThemeName = "Office2016Colorful";
+            // 
+            // btnSaveRoom
+            // 
+            this.btnSaveRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveRoom.AutoSize = true;
+            this.btnSaveRoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnSaveRoom.Location = new System.Drawing.Point(524, 124);
+            this.btnSaveRoom.Name = "btnSaveRoom";
+            this.btnSaveRoom.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.btnSaveRoom.Size = new System.Drawing.Size(255, 31);
+            this.btnSaveRoom.TabIndex = 5;
+            this.btnSaveRoom.Text = "Lưu";
+            this.btnSaveRoom.ThemeName = "Office2016Colorful";
+            // 
             // RoomPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -452,7 +934,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.roomTabControl)).EndInit();
             this.roomTabControl.ResumeLayout(false);
             this.listPage.ResumeLayout(false);
+            this.splitContainer.Panel1.ResumeLayout(false);
+            this.splitContainer.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
+            this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.roomDataGrid)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.roomTypeDataGrid)).EndInit();
             this.addPage.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
@@ -467,6 +954,22 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtRoom)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboStatus)).EndInit();
+            this.modPage.ResumeLayout(false);
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
+            this.tableLayoutPanel3.ResumeLayout(false);
+            this.tableLayoutPanel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRoomType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numModMax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numModPrice)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.tableLayoutPanel6.ResumeLayout(false);
+            this.tableLayoutPanel6.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cboRoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModRoom)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModType)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModStatus)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -476,7 +979,6 @@
         private Syncfusion.Windows.Forms.Tools.TabControlAdv roomTabControl;
         private Syncfusion.Windows.Forms.Tools.TabPageAdv listPage;
         private Syncfusion.Windows.Forms.Tools.TabPageAdv addPage;
-        private Syncfusion.WinForms.DataGrid.SfDataGrid roomDataGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
@@ -496,5 +998,34 @@
         private Syncfusion.WinForms.Controls.SfButton btnRoomAdd;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel15;
         private Syncfusion.WinForms.ListView.SfComboBox cboStatus;
+        private Syncfusion.Windows.Forms.Tools.TabPageAdv modPage;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.SplitContainer splitContainer;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid roomDataGrid;
+        private Syncfusion.WinForms.DataGrid.SfDataGrid roomTypeDataGrid;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel1;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel3;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel2;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel4;
+        private Syncfusion.WinForms.ListView.SfComboBox cboRoomType;
+        private Syncfusion.WinForms.Controls.SfButton btnModType;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModType;
+        private Syncfusion.Windows.Forms.Tools.NumericUpDownExt numModMax;
+        private Syncfusion.Windows.Forms.Tools.NumericUpDownExt numModPrice;
+        private Syncfusion.WinForms.Controls.SfButton btnTypeSave;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
+        private Syncfusion.WinForms.ListView.SfComboBox cboRoom;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel6;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel7;
+        private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel8;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModRoom;
+        private Syncfusion.WinForms.ListView.SfComboBox cboModType;
+        private Syncfusion.WinForms.ListView.SfComboBox cboModStatus;
+        private Syncfusion.WinForms.Controls.SfButton btnModRoom;
+        private Syncfusion.WinForms.Controls.SfButton btnSaveRoom;
     }
 }

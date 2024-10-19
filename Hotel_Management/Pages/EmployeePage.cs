@@ -2,7 +2,6 @@
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.DataGrid;
 using System;
-using System.Windows.Forms;
 
 namespace Hotel_Management.Pages
 {
@@ -18,7 +17,6 @@ namespace Hotel_Management.Pages
 
         private void EmployeePage_Load(object sender, EventArgs e)
         {
-            FormBorderStyle = FormBorderStyle.None;
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Id", HeaderText = "Mã nhân viên" });
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Name", HeaderText = "Họ tên" });
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "DoB", HeaderText = "Ngày sinh", Format = "dd-MM-yyyy" });
