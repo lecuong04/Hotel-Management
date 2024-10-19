@@ -55,5 +55,14 @@ namespace Hotel_Management.Forms
         {
             FormBorderStyle = FormBorderStyle.FixedSingle;
         }
+
+        private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            roomPage.Close();
+            customerPage.Close();
+            reservationPage.Close();
+            employeePage.Close();
+            accountPage.Close();
+        }
     }
 }

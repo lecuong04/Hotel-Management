@@ -168,6 +168,9 @@
             this.splitContainer.Size = new System.Drawing.Size(794, 420);
             this.splitContainer.SplitterDistance = 550;
             this.splitContainer.TabIndex = 7;
+            this.splitContainer.MouseDown += new System.Windows.Forms.MouseEventHandler(this.splitContainer_MouseDown);
+            this.splitContainer.MouseMove += new System.Windows.Forms.MouseEventHandler(this.splitContainer_MouseMove);
+            this.splitContainer.MouseUp += new System.Windows.Forms.MouseEventHandler(this.splitContainer_MouseUp);
             // 
             // roomDataGrid
             // 
