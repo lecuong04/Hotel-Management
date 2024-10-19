@@ -1,4 +1,5 @@
 ﻿using Hotel_Management.Models;
+using Hotel_Management.Models.Extensions;
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
@@ -122,7 +123,7 @@ namespace Hotel_Management.Forms
                 if (errors.Count == 0)
                 {
                     DateTime now = DateTime.Now;
-                    bool result = db.AddRow(new Employee()
+                    Employee empl = db.AddRow(new Employee()
                     {
                         Name = fullName,
                         Address = address,
@@ -133,9 +134,8 @@ namespace Hotel_Management.Forms
                         DoB = dob,
                         DoW = now
                     });
-                    if (result)
+                    if (empl.Id > 0)
                     {
-                        Employee admin = db.GetTable<Employee>(x => x.UniqueNumber == uniqueNumber).First();
                         db.AddRow(new Account()
                         {
                             CreatedAt = now,
@@ -143,7 +143,7 @@ namespace Hotel_Management.Forms
                             Password = BCrypt.Net.BCrypt.HashPassword(pass),
                             PasswordUpdatedAt = now,
                             Role = "Quản trị viên",
-                            Employee = admin.Id,
+                            Employee = empl.Id,
                         });
                         Close();
                     }

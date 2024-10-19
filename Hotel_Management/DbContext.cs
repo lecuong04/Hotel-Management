@@ -102,9 +102,71 @@ namespace Hotel_Management
             return result;
         }
 
-        public bool AddRow<T>(T data)
+        //public bool AddRow<T>(T data)
+        //{
+        //    bool result = false;
+        //    if (data == null)
+        //        return result;
+        //    Type type = typeof(T);
+        //    TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+        //    if (tableAttr == null)
+        //        return result;
+        //    List<string> keys = new List<string>();
+        //    List<object> values = new List<object>();
+
+        //    PropertyInfo[] properties = type.GetProperties();
+        //    foreach (PropertyInfo property in properties)
+        //    {
+        //        ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+        //        if (columnAttr == null || columnAttr.IsIdentity)
+        //            continue;
+        //        object value = property.GetValue(data, null);
+        //        if (value == null || value.ToString().Length == 0)
+        //            continue;
+        //        Type pType = property.PropertyType;
+        //        if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+        //            values.Add(value);
+        //        else if (pType == typeof(DateTime))
+        //        {
+        //            DateTime dt = (DateTime)value;
+        //            if (dt.Year == 1)
+        //                continue;
+        //            else
+        //                values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
+        //        }
+        //        else if (pType == typeof(bool))
+        //        {
+        //            if ((bool)value)
+        //                values.Add(1);
+        //            else
+        //                values.Add(0);
+        //        }
+        //        else
+        //            values.Add($"N'{value}'");
+        //        keys.Add(columnAttr.Name);
+        //    }
+        //    SqlCommand cmd = conn.CreateCommand();
+        //    cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
+        //    cmd.CommandType = CommandType.Text;
+        //    try
+        //    {
+        //        if (conn.State == ConnectionState.Closed)
+        //            conn.Open();
+        //        if (cmd.ExecuteNonQuery() != 0)
+        //            result = true;
+        //        if (conn.State == ConnectionState.Open)
+        //            conn.Close();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        Console.WriteLine(ex.ToString());
+        //    }
+        //    return result;
+        //}
+
+        public T AddRow<T>(T data)
         {
-            bool result = false;
+            T result = (T)Activator.CreateInstance(typeof(T));
             if (data == null)
                 return result;
             Type type = typeof(T);
@@ -146,14 +208,24 @@ namespace Hotel_Management
                 keys.Add(columnAttr.Name);
             }
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
+            cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) OUTPUT inserted.* VALUES ({string.Join(", ", values)})";
             cmd.CommandType = CommandType.Text;
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
-                if (cmd.ExecuteNonQuery() != 0)
-                    result = true;
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    foreach (PropertyInfo property in properties)
+                    {
+                        string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                        object pValue = reader[column];
+                        if (column.Length == 0 || pValue.ToString().Length == 0)
+                            continue;
+                        property.SetValue(result, pValue, null);
+                    }
+                }                
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }

@@ -13,7 +13,7 @@ namespace Hotel_Management.Tests
         [Test]
         public void GetTable()
         {
-            var result = db.GetTable<Reservation>();
+            var result = db.GetTable<RoomType>();
             Assert.Pass(result.Count().ToString());
         }
 
@@ -27,7 +27,7 @@ namespace Hotel_Management.Tests
         [Test]
         public void AddRow()
         {
-            bool result = db.AddRow(new Employee()
+            Employee empl = db.AddRow(new Employee()
             {
                 Name = "Lê Ngọc Cường",
                 Phone = "0868937404",
@@ -37,21 +37,31 @@ namespace Hotel_Management.Tests
                 Position = "Trưởng phòng nhân sự",
                 DoW = new DateTime(2024, 04, 02)
             });
-            if (result)
+            if (empl.Id > 0)
             {
-                Employee cuong = db.GetTable<Employee>(x => x.UniqueNumber == "031204000632").FirstOrDefault();
-                if (cuong != null)
+                Account account = db.AddRow(new Account()
                 {
-                    result = db.AddRow(new Account()
-                    {
-                        Employee = cuong.Id,
-                        Role = "Quản trị viên",
-                        Password = BCrypt.Net.BCrypt.HashPassword("LeCuong_04"),
-                        IsActive = true
-                    });
-                }
+                    Employee = empl.Id,
+                    Role = "Quản trị viên",
+                    Password = BCrypt.Net.BCrypt.HashPassword("LeCuong_04"),
+                    IsActive = true
+                });
+                Assert.Equals(account.Role, "Quản trị viên");
+            } else
+            {
+                Assert.Fail();
             }
-            ClassicAssert.IsTrue(result);
+        }
+
+        [Test]
+        public void AddRowDev()
+        {
+            RoomType roomType = db.AddRow(new RoomType() { 
+                Name = "Dev",
+                Price = 10000,
+                MaxPeople = 10,
+            });
+            Assert.Equals(roomType.Name, "Dev");
         }
 
         [Test]
@@ -78,7 +88,7 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test1))
+            if (db.AddRow(test1).Name == test1.Name)
                 TestContext.WriteLine(test1.Name);
             Employee test2 = new Employee()
             {
@@ -90,7 +100,7 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test2))
+            if (db.AddRow(test2).Name == test2.Name)
                 TestContext.WriteLine(test2.Name);
             Employee test3 = new Employee()
             {
@@ -102,7 +112,7 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test3))
+            if (db.AddRow(test3).Name == test3.Name)
                 TestContext.WriteLine(test3.Name);
             int result = db.DeleteRows<Employee>(x => x.Position == "1");
             ClassicAssert.AreEqual(3, result);
