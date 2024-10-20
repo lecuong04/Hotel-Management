@@ -35,15 +35,16 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.autoLabel1 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.autoLabel2 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
-            this.autoLabel3 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
-            this.autoLabel4 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.cboEmployee = new Syncfusion.WinForms.ListView.SfComboBox();
             this.textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtRole = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.autoLabel3 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.txtRole = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.autoLabel4 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
+            this.txtPassword = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.autoLabel5 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.txtRePass = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.btnClear = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.tabControlAdv1)).BeginInit();
             this.tabControlAdv1.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -141,12 +142,14 @@
             this.tableLayoutPanel1.Controls.Add(this.txtPassword, 4, 0);
             this.tableLayoutPanel1.Controls.Add(this.autoLabel5, 3, 1);
             this.tableLayoutPanel1.Controls.Add(this.txtRePass, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnClear, 4, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 4;
+            this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.Size = new System.Drawing.Size(792, 418);
@@ -179,34 +182,6 @@
             this.autoLabel2.Text = "Mã căn cước";
             this.autoLabel2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.autoLabel2.ThemeName = "Office2016Colorful";
-            // 
-            // autoLabel3
-            // 
-            this.autoLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.autoLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.autoLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.autoLabel3.Location = new System.Drawing.Point(3, 98);
-            this.autoLabel3.Name = "autoLabel3";
-            this.autoLabel3.Size = new System.Drawing.Size(114, 20);
-            this.autoLabel3.TabIndex = 2;
-            this.autoLabel3.Text = "Vai trò";
-            this.autoLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.autoLabel3.ThemeName = "Office2016Colorful";
-            // 
-            // autoLabel4
-            // 
-            this.autoLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.autoLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.autoLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.autoLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.autoLabel4.Location = new System.Drawing.Point(419, 10);
-            this.autoLabel4.Name = "autoLabel4";
-            this.autoLabel4.Size = new System.Drawing.Size(94, 20);
-            this.autoLabel4.TabIndex = 3;
-            this.autoLabel4.Text = "Mật khẩu";
-            this.autoLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.autoLabel4.ThemeName = "Office2016Colorful";
             // 
             // cboEmployee
             // 
@@ -242,6 +217,31 @@
             this.textBoxExt1.TabIndex = 5;
             this.textBoxExt1.ThemeName = "Office2016Colorful";
             // 
+            // sfButton1
+            // 
+            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.sfButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.sfButton1.Location = new System.Drawing.Point(519, 94);
+            this.sfButton1.Name = "sfButton1";
+            this.sfButton1.Size = new System.Drawing.Size(270, 28);
+            this.sfButton1.TabIndex = 10;
+            this.sfButton1.Text = "Thêm";
+            this.sfButton1.ThemeName = "Office2016Colorful";
+            // 
+            // autoLabel3
+            // 
+            this.autoLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel3.Location = new System.Drawing.Point(3, 98);
+            this.autoLabel3.Name = "autoLabel3";
+            this.autoLabel3.Size = new System.Drawing.Size(114, 20);
+            this.autoLabel3.TabIndex = 2;
+            this.autoLabel3.Text = "Vai trò";
+            this.autoLabel3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel3.ThemeName = "Office2016Colorful";
+            // 
             // txtRole
             // 
             this.txtRole.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -258,6 +258,20 @@
             this.txtRole.TabIndex = 6;
             this.txtRole.ThemeName = "Office2016Colorful";
             // 
+            // autoLabel4
+            // 
+            this.autoLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.autoLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.autoLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.autoLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.autoLabel4.Location = new System.Drawing.Point(419, 10);
+            this.autoLabel4.Name = "autoLabel4";
+            this.autoLabel4.Size = new System.Drawing.Size(94, 20);
+            this.autoLabel4.TabIndex = 3;
+            this.autoLabel4.Text = "Mật khẩu";
+            this.autoLabel4.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.autoLabel4.ThemeName = "Office2016Colorful";
+            // 
             // txtPassword
             // 
             this.txtPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -273,17 +287,6 @@
             this.txtPassword.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
             this.txtPassword.TabIndex = 7;
             this.txtPassword.ThemeName = "Office2016Colorful";
-            // 
-            // sfButton1
-            // 
-            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.sfButton1.Location = new System.Drawing.Point(519, 94);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(270, 28);
-            this.sfButton1.TabIndex = 10;
-            this.sfButton1.Text = "Thêm";
-            this.sfButton1.ThemeName = "Office2016Colorful";
             // 
             // autoLabel5
             // 
@@ -311,6 +314,17 @@
             this.txtRePass.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
             this.txtRePass.TabIndex = 8;
             this.txtRePass.ThemeName = "Office2016Colorful";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(519, 134);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(270, 28);
+            this.btnClear.TabIndex = 11;
+            this.btnClear.Text = "Xoá";
+            this.btnClear.ThemeName = "Office2016Colorful";
             // 
             // AccountPage
             // 
@@ -360,5 +374,6 @@
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel5;
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtRePass;
+        private Syncfusion.WinForms.Controls.SfButton btnClear;
     }
 }

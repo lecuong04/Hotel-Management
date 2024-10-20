@@ -40,6 +40,7 @@
             this.sfDateTimeEdit2 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.sfDateTimeEdit3 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
             this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnClear = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.reservationTabControl)).BeginInit();
             this.reservationTabControl.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -116,7 +117,7 @@
             this.addPage.Location = new System.Drawing.Point(2, 26);
             this.addPage.Name = "addPage";
             this.addPage.ShowCloseButton = true;
-            this.addPage.Size = new System.Drawing.Size(796, 422);
+            this.addPage.Size = new System.Drawing.Size(794, 420);
             this.addPage.TabFont = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addPage.TabIndex = 2;
             this.addPage.Text = "Thêm";
@@ -137,14 +138,16 @@
             this.tableLayoutPanel2.Controls.Add(this.sfDateTimeEdit2, 4, 0);
             this.tableLayoutPanel2.Controls.Add(this.sfDateTimeEdit3, 1, 1);
             this.tableLayoutPanel2.Controls.Add(this.sfButton1, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnClear, 4, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 3;
+            this.tableLayoutPanel2.RowCount = 4;
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 48F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel2.Size = new System.Drawing.Size(796, 422);
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(794, 420);
             this.tableLayoutPanel2.TabIndex = 0;
             // 
             // autoLabel7
@@ -181,7 +184,7 @@
             this.autoLabel9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.autoLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoLabel9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.autoLabel9.Location = new System.Drawing.Point(411, 4);
+            this.autoLabel9.Location = new System.Drawing.Point(410, 4);
             this.autoLabel9.Name = "autoLabel9";
             this.autoLabel9.Size = new System.Drawing.Size(114, 40);
             this.autoLabel9.TabIndex = 2;
@@ -195,11 +198,10 @@
             this.sfComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sfComboBox1.BackColor = System.Drawing.Color.White;
             this.sfComboBox1.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfComboBox1.DropDownStyle = Syncfusion.WinForms.ListView.Enums.DropDownStyle.DropDown;
             this.sfComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.sfComboBox1.Location = new System.Drawing.Point(123, 11);
             this.sfComboBox1.Name = "sfComboBox1";
-            this.sfComboBox1.Size = new System.Drawing.Size(262, 26);
+            this.sfComboBox1.Size = new System.Drawing.Size(261, 26);
             this.sfComboBox1.Style.EditorStyle.BackColor = System.Drawing.Color.White;
             this.sfComboBox1.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.sfComboBox1.Style.ReadOnlyEditorStyle.BackColor = System.Drawing.Color.White;
@@ -207,6 +209,7 @@
             this.sfComboBox1.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.sfComboBox1.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.sfComboBox1.TabIndex = 3;
+            this.sfComboBox1.TabStop = false;
             // 
             // sfDateTimeEdit2
             // 
@@ -217,9 +220,9 @@
             this.sfDateTimeEdit2.DateTimePattern = Syncfusion.WinForms.Input.Enums.DateTimePattern.Custom;
             this.sfDateTimeEdit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfDateTimeEdit2.Format = "dd/MM/yyyy HH:mm";
-            this.sfDateTimeEdit2.Location = new System.Drawing.Point(531, 10);
+            this.sfDateTimeEdit2.Location = new System.Drawing.Point(530, 10);
             this.sfDateTimeEdit2.Name = "sfDateTimeEdit2";
-            this.sfDateTimeEdit2.Size = new System.Drawing.Size(262, 28);
+            this.sfDateTimeEdit2.Size = new System.Drawing.Size(261, 28);
             this.sfDateTimeEdit2.TabIndex = 4;
             this.sfDateTimeEdit2.ThemeName = "Office2016Colorful";
             this.sfDateTimeEdit2.ToolTipText = "";
@@ -233,7 +236,7 @@
             this.sfDateTimeEdit3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.sfDateTimeEdit3.Location = new System.Drawing.Point(123, 58);
             this.sfDateTimeEdit3.Name = "sfDateTimeEdit3";
-            this.sfDateTimeEdit3.Size = new System.Drawing.Size(262, 28);
+            this.sfDateTimeEdit3.Size = new System.Drawing.Size(261, 28);
             this.sfDateTimeEdit3.TabIndex = 5;
             this.sfDateTimeEdit3.ThemeName = "Office2016Colorful";
             this.sfDateTimeEdit3.ToolTipText = "";
@@ -243,13 +246,26 @@
             this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.sfButton1.AutoSize = true;
             this.sfButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.sfButton1.Location = new System.Drawing.Point(531, 56);
+            this.sfButton1.Location = new System.Drawing.Point(530, 56);
             this.sfButton1.Name = "sfButton1";
             this.sfButton1.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.sfButton1.Size = new System.Drawing.Size(262, 31);
+            this.sfButton1.Size = new System.Drawing.Size(261, 31);
             this.sfButton1.TabIndex = 6;
             this.sfButton1.Text = "Thêm";
             this.sfButton1.ThemeName = "Office2016Colorful";
+            // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.AutoSize = true;
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(530, 100);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.btnClear.Size = new System.Drawing.Size(261, 31);
+            this.btnClear.TabIndex = 7;
+            this.btnClear.Text = "Xoá";
+            this.btnClear.ThemeName = "Office2016Colorful";
             // 
             // ReservationPage
             // 
@@ -292,5 +308,6 @@
         private Syncfusion.WinForms.Input.SfDateTimeEdit sfDateTimeEdit2;
         private Syncfusion.WinForms.Input.SfDateTimeEdit sfDateTimeEdit3;
         private Syncfusion.WinForms.Controls.SfButton sfButton1;
+        private Syncfusion.WinForms.Controls.SfButton btnClear;
     }
 }

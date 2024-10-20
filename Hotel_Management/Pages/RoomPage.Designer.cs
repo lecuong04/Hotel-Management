@@ -79,6 +79,8 @@
             this.cboModStatus = new Syncfusion.WinForms.ListView.SfComboBox();
             this.btnModRoom = new Syncfusion.WinForms.Controls.SfButton();
             this.btnSaveRoom = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnTypeClear = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnRoomClear = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.roomTabControl)).BeginInit();
             this.roomTabControl.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -185,6 +187,7 @@
             this.roomDataGrid.Name = "roomDataGrid";
             this.roomDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
             this.roomDataGrid.Size = new System.Drawing.Size(550, 420);
+            this.roomDataGrid.Style.BorderSides = System.Windows.Forms.Border3DSide.Right;
             this.roomDataGrid.Style.CellStyle.Font.Size = 10F;
             this.roomDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.roomDataGrid.Style.HeaderStyle.Font.Size = 10F;
@@ -205,6 +208,7 @@
             this.roomTypeDataGrid.Name = "roomTypeDataGrid";
             this.roomTypeDataGrid.NavigationMode = Syncfusion.WinForms.DataGrid.Enums.NavigationMode.Row;
             this.roomTypeDataGrid.Size = new System.Drawing.Size(240, 420);
+            this.roomTypeDataGrid.Style.BorderSides = System.Windows.Forms.Border3DSide.Left;
             this.roomTypeDataGrid.Style.CellStyle.Font.Size = 10F;
             this.roomTypeDataGrid.Style.CellStyle.HorizontalAlignment = System.Windows.Forms.HorizontalAlignment.Center;
             this.roomTypeDataGrid.Style.HeaderStyle.FilterIconColor = System.Drawing.Color.FromArgb(((int)(((byte)(29)))), ((int)(((byte)(29)))), ((int)(((byte)(29)))));
@@ -273,10 +277,12 @@
             this.tableLayoutPanel4.Controls.Add(this.numMax, 4, 0);
             this.tableLayoutPanel4.Controls.Add(this.btnTypeAdd, 4, 1);
             this.tableLayoutPanel4.Controls.Add(this.numPrice, 1, 1);
+            this.tableLayoutPanel4.Controls.Add(this.btnTypeClear, 4, 2);
             this.tableLayoutPanel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel4.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel4.Name = "tableLayoutPanel4";
-            this.tableLayoutPanel4.RowCount = 3;
+            this.tableLayoutPanel4.RowCount = 4;
+            this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel4.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -329,7 +335,7 @@
             // 
             this.txtType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtType.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtType.BeforeTouchSize = new System.Drawing.Size(261, 26);
             this.txtType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.txtType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtType.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -413,10 +419,12 @@
             this.tableLayoutPanel5.Controls.Add(this.btnRoomAdd, 4, 1);
             this.tableLayoutPanel5.Controls.Add(this.autoLabel15, 0, 1);
             this.tableLayoutPanel5.Controls.Add(this.cboStatus, 1, 1);
+            this.tableLayoutPanel5.Controls.Add(this.btnRoomClear, 4, 2);
             this.tableLayoutPanel5.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel5.Location = new System.Drawing.Point(3, 22);
             this.tableLayoutPanel5.Name = "tableLayoutPanel5";
-            this.tableLayoutPanel5.RowCount = 3;
+            this.tableLayoutPanel5.RowCount = 4;
+            this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel5.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -453,7 +461,7 @@
             // 
             this.txtRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtRoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtRoom.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtRoom.BeforeTouchSize = new System.Drawing.Size(261, 26);
             this.txtRoom.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.txtRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
@@ -684,7 +692,7 @@
             // 
             this.txtModType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModType.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtModType.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtModType.BeforeTouchSize = new System.Drawing.Size(261, 26);
             this.txtModType.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.txtModType.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtModType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
@@ -850,7 +858,7 @@
             // 
             this.txtModRoom.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.txtModRoom.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtModRoom.BeforeTouchSize = new System.Drawing.Size(255, 26);
+            this.txtModRoom.BeforeTouchSize = new System.Drawing.Size(261, 26);
             this.txtModRoom.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
             this.txtModRoom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtModRoom.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
@@ -920,6 +928,28 @@
             this.btnSaveRoom.TabIndex = 5;
             this.btnSaveRoom.Text = "Lưu";
             this.btnSaveRoom.ThemeName = "Office2016Colorful";
+            // 
+            // btnTypeClear
+            // 
+            this.btnTypeClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTypeClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnTypeClear.Location = new System.Drawing.Point(524, 86);
+            this.btnTypeClear.Name = "btnTypeClear";
+            this.btnTypeClear.Size = new System.Drawing.Size(255, 28);
+            this.btnTypeClear.TabIndex = 7;
+            this.btnTypeClear.Text = "Xoá";
+            this.btnTypeClear.ThemeName = "Office2016Colorful";
+            // 
+            // btnRoomClear
+            // 
+            this.btnRoomClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRoomClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnRoomClear.Location = new System.Drawing.Point(524, 86);
+            this.btnRoomClear.Name = "btnRoomClear";
+            this.btnRoomClear.Size = new System.Drawing.Size(255, 28);
+            this.btnRoomClear.TabIndex = 8;
+            this.btnRoomClear.Text = "Xoá";
+            this.btnRoomClear.ThemeName = "Office2016Colorful";
             // 
             // RoomPage
             // 
@@ -1030,5 +1060,7 @@
         private Syncfusion.WinForms.ListView.SfComboBox cboModStatus;
         private Syncfusion.WinForms.Controls.SfButton btnModRoom;
         private Syncfusion.WinForms.Controls.SfButton btnSaveRoom;
+        private Syncfusion.WinForms.Controls.SfButton btnTypeClear;
+        private Syncfusion.WinForms.Controls.SfButton btnRoomClear;
     }
 }
