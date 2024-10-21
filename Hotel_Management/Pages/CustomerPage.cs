@@ -19,7 +19,7 @@ namespace Hotel_Management.Pages
 
         private void CustomerPage_Load(object sender, EventArgs e)
         {
-            customerDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Name", HeaderText = "Họ tên" });
+            customerDataGrid.Columns.Add(new GridTextColumn() { MappingName = "FullName", HeaderText = "Họ tên" });
             customerDataGrid.Columns.Add(new GridTextColumn() { MappingName = "DoB", HeaderText = "Ngày sinh", Format = "dd-MM-yyyy" });
             customerDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Gender", HeaderText = "Giới tính" });
             customerDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Phone", HeaderText = "Số điện thoại" });

@@ -44,9 +44,9 @@
             this.txtCustomerPhone = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.cboCustomerGender = new Syncfusion.WinForms.ListView.SfComboBox();
             this.cboCustomerNationaity = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfDateTimeEdit1 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
-            this.btnAddCustomer = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnCustomerClear = new Syncfusion.WinForms.Controls.SfButton();
+            this.dDoB = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            this.btnAdd = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnClear = new Syncfusion.WinForms.Controls.SfButton();
             this.modPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.autoLabel7 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -56,15 +56,16 @@
             this.autoLabel11 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.autoLabel12 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
             this.autoLabel13 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
-            this.sfComboBox1 = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.textBoxExt1 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.textBoxExt2 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.sfComboBox2 = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfDateTimeEdit2 = new Syncfusion.WinForms.Input.SfDateTimeEdit();
-            this.textBoxExt3 = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
-            this.sfComboBox3 = new Syncfusion.WinForms.ListView.SfComboBox();
-            this.sfButton1 = new Syncfusion.WinForms.Controls.SfButton();
-            this.sfButton2 = new Syncfusion.WinForms.Controls.SfButton();
+            this.cboCustomer = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.txtModFulName = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtModUnique = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.cboModGender = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.dModDoB = new Syncfusion.WinForms.Input.SfDateTimeEdit();
+            this.txtModPhone = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.cboModNationality = new Syncfusion.WinForms.ListView.SfComboBox();
+            this.btnMod = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.customerTabControl)).BeginInit();
             this.customerTabControl.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -78,12 +79,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.cboCustomerNationaity)).BeginInit();
             this.modPage.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCustomer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModFulName)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModUnique)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModGender)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModNationality)).BeginInit();
             this.SuspendLayout();
             // 
             // customerTabControl
@@ -183,9 +184,9 @@
             this.tableLayoutPanel1.Controls.Add(this.txtCustomerPhone, 4, 1);
             this.tableLayoutPanel1.Controls.Add(this.cboCustomerGender, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.cboCustomerNationaity, 4, 2);
-            this.tableLayoutPanel1.Controls.Add(this.sfDateTimeEdit1, 4, 0);
-            this.tableLayoutPanel1.Controls.Add(this.btnAddCustomer, 4, 3);
-            this.tableLayoutPanel1.Controls.Add(this.btnCustomerClear, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.dDoB, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.btnAdd, 4, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnClear, 1, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -374,44 +375,44 @@
             this.cboCustomerNationaity.TabStop = false;
             this.cboCustomerNationaity.ThemeName = "Office2016Colorful";
             // 
-            // sfDateTimeEdit1
+            // dDoB
             // 
-            this.sfDateTimeEdit1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfDateTimeEdit1.Cursor = System.Windows.Forms.Cursors.Default;
-            this.sfDateTimeEdit1.DateTimeEditingMode = Syncfusion.WinForms.Input.Enums.DateTimeEditingMode.Mask;
-            this.sfDateTimeEdit1.DateTimeIcon = null;
-            this.sfDateTimeEdit1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfDateTimeEdit1.Location = new System.Drawing.Point(530, 6);
-            this.sfDateTimeEdit1.Name = "sfDateTimeEdit1";
-            this.sfDateTimeEdit1.Size = new System.Drawing.Size(261, 28);
-            this.sfDateTimeEdit1.TabIndex = 4;
-            this.sfDateTimeEdit1.ThemeName = "Office2016Colorful";
-            this.sfDateTimeEdit1.ToolTipText = "";
+            this.dDoB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dDoB.Cursor = System.Windows.Forms.Cursors.Default;
+            this.dDoB.DateTimeEditingMode = Syncfusion.WinForms.Input.Enums.DateTimeEditingMode.Mask;
+            this.dDoB.DateTimeIcon = null;
+            this.dDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dDoB.Location = new System.Drawing.Point(530, 6);
+            this.dDoB.Name = "dDoB";
+            this.dDoB.Size = new System.Drawing.Size(261, 28);
+            this.dDoB.TabIndex = 4;
+            this.dDoB.ThemeName = "Office2016Colorful";
+            this.dDoB.ToolTipText = "";
             // 
-            // btnAddCustomer
+            // btnAdd
             // 
-            this.btnAddCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddCustomer.AutoSize = true;
-            this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnAddCustomer.Location = new System.Drawing.Point(530, 124);
-            this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
-            this.btnAddCustomer.Size = new System.Drawing.Size(261, 31);
-            this.btnAddCustomer.TabIndex = 7;
-            this.btnAddCustomer.Tag = "0";
-            this.btnAddCustomer.Text = "Thêm";
-            this.btnAddCustomer.ThemeName = "Office2016Colorful";
+            this.btnAdd.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAdd.AutoSize = true;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnAdd.Location = new System.Drawing.Point(530, 124);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Padding = new System.Windows.Forms.Padding(7, 0, 7, 0);
+            this.btnAdd.Size = new System.Drawing.Size(261, 31);
+            this.btnAdd.TabIndex = 7;
+            this.btnAdd.Tag = "0";
+            this.btnAdd.Text = "Thêm";
+            this.btnAdd.ThemeName = "Office2016Colorful";
             // 
-            // btnCustomerClear
+            // btnClear
             // 
-            this.btnCustomerClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCustomerClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnCustomerClear.Location = new System.Drawing.Point(123, 126);
-            this.btnCustomerClear.Name = "btnCustomerClear";
-            this.btnCustomerClear.Size = new System.Drawing.Size(261, 28);
-            this.btnCustomerClear.TabIndex = 8;
-            this.btnCustomerClear.Text = "Xoá";
-            this.btnCustomerClear.ThemeName = "Office2016Colorful";
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(123, 126);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(261, 28);
+            this.btnClear.TabIndex = 8;
+            this.btnClear.Text = "Xoá";
+            this.btnClear.ThemeName = "Office2016Colorful";
             // 
             // modPage
             // 
@@ -444,19 +445,21 @@
             this.tableLayoutPanel2.Controls.Add(this.autoLabel11, 3, 3);
             this.tableLayoutPanel2.Controls.Add(this.autoLabel12, 3, 4);
             this.tableLayoutPanel2.Controls.Add(this.autoLabel13, 3, 5);
-            this.tableLayoutPanel2.Controls.Add(this.sfComboBox1, 1, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBoxExt1, 4, 0);
-            this.tableLayoutPanel2.Controls.Add(this.textBoxExt2, 4, 1);
-            this.tableLayoutPanel2.Controls.Add(this.sfComboBox2, 4, 2);
-            this.tableLayoutPanel2.Controls.Add(this.sfDateTimeEdit2, 4, 3);
-            this.tableLayoutPanel2.Controls.Add(this.textBoxExt3, 4, 4);
-            this.tableLayoutPanel2.Controls.Add(this.sfComboBox3, 4, 5);
-            this.tableLayoutPanel2.Controls.Add(this.sfButton1, 1, 1);
-            this.tableLayoutPanel2.Controls.Add(this.sfButton2, 4, 6);
+            this.tableLayoutPanel2.Controls.Add(this.cboCustomer, 1, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtModFulName, 4, 0);
+            this.tableLayoutPanel2.Controls.Add(this.txtModUnique, 4, 1);
+            this.tableLayoutPanel2.Controls.Add(this.cboModGender, 4, 2);
+            this.tableLayoutPanel2.Controls.Add(this.dModDoB, 4, 3);
+            this.tableLayoutPanel2.Controls.Add(this.txtModPhone, 4, 4);
+            this.tableLayoutPanel2.Controls.Add(this.cboModNationality, 4, 5);
+            this.tableLayoutPanel2.Controls.Add(this.btnMod, 1, 1);
+            this.tableLayoutPanel2.Controls.Add(this.btnSave, 4, 6);
+            this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 8;
+            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -566,137 +569,148 @@
             this.autoLabel13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.autoLabel13.ThemeName = "Office2016Colorful";
             // 
-            // sfComboBox1
+            // cboCustomer
             // 
-            this.sfComboBox1.AllowDropDownResize = false;
-            this.sfComboBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfComboBox1.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfComboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox1.Location = new System.Drawing.Point(123, 7);
-            this.sfComboBox1.Name = "sfComboBox1";
-            this.sfComboBox1.Size = new System.Drawing.Size(261, 26);
-            this.sfComboBox1.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox1.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox1.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfComboBox1.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox1.TabIndex = 7;
-            this.sfComboBox1.TabStop = false;
-            this.sfComboBox1.ThemeName = "Office2016Colorful";
+            this.cboCustomer.AllowDropDownResize = false;
+            this.cboCustomer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboCustomer.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCustomer.Location = new System.Drawing.Point(123, 7);
+            this.cboCustomer.Name = "cboCustomer";
+            this.cboCustomer.Size = new System.Drawing.Size(261, 26);
+            this.cboCustomer.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCustomer.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCustomer.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboCustomer.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboCustomer.TabIndex = 7;
+            this.cboCustomer.TabStop = false;
+            this.cboCustomer.ThemeName = "Office2016Colorful";
             // 
-            // textBoxExt1
+            // txtModFulName
             // 
-            this.textBoxExt1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxExt1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBoxExt1.BeforeTouchSize = new System.Drawing.Size(261, 26);
-            this.textBoxExt1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.textBoxExt1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.textBoxExt1.Location = new System.Drawing.Point(530, 7);
-            this.textBoxExt1.Name = "textBoxExt1";
-            this.textBoxExt1.Size = new System.Drawing.Size(261, 26);
-            this.textBoxExt1.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
-            this.textBoxExt1.TabIndex = 9;
-            this.textBoxExt1.ThemeName = "Office2016Colorful";
+            this.txtModFulName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModFulName.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModFulName.BeforeTouchSize = new System.Drawing.Size(261, 26);
+            this.txtModFulName.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModFulName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModFulName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModFulName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModFulName.Location = new System.Drawing.Point(530, 7);
+            this.txtModFulName.Name = "txtModFulName";
+            this.txtModFulName.Size = new System.Drawing.Size(261, 26);
+            this.txtModFulName.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModFulName.TabIndex = 9;
+            this.txtModFulName.ThemeName = "Office2016Colorful";
             // 
-            // textBoxExt2
+            // txtModUnique
             // 
-            this.textBoxExt2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxExt2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBoxExt2.BeforeTouchSize = new System.Drawing.Size(261, 26);
-            this.textBoxExt2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.textBoxExt2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.textBoxExt2.Location = new System.Drawing.Point(530, 47);
-            this.textBoxExt2.Name = "textBoxExt2";
-            this.textBoxExt2.Size = new System.Drawing.Size(261, 26);
-            this.textBoxExt2.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
-            this.textBoxExt2.TabIndex = 10;
-            this.textBoxExt2.ThemeName = "Office2016Colorful";
+            this.txtModUnique.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModUnique.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModUnique.BeforeTouchSize = new System.Drawing.Size(261, 26);
+            this.txtModUnique.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModUnique.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModUnique.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModUnique.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModUnique.Location = new System.Drawing.Point(530, 47);
+            this.txtModUnique.Name = "txtModUnique";
+            this.txtModUnique.Size = new System.Drawing.Size(261, 26);
+            this.txtModUnique.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModUnique.TabIndex = 10;
+            this.txtModUnique.ThemeName = "Office2016Colorful";
             // 
-            // sfComboBox2
+            // cboModGender
             // 
-            this.sfComboBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfComboBox2.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfComboBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox2.Location = new System.Drawing.Point(530, 87);
-            this.sfComboBox2.Name = "sfComboBox2";
-            this.sfComboBox2.Size = new System.Drawing.Size(261, 26);
-            this.sfComboBox2.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox2.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox2.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfComboBox2.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox2.TabIndex = 11;
-            this.sfComboBox2.TabStop = false;
-            this.sfComboBox2.ThemeName = "Office2016Colorful";
+            this.cboModGender.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboModGender.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboModGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModGender.Location = new System.Drawing.Point(530, 87);
+            this.cboModGender.Name = "cboModGender";
+            this.cboModGender.Size = new System.Drawing.Size(261, 26);
+            this.cboModGender.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModGender.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModGender.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboModGender.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModGender.TabIndex = 11;
+            this.cboModGender.TabStop = false;
+            this.cboModGender.ThemeName = "Office2016Colorful";
             // 
-            // sfDateTimeEdit2
+            // dModDoB
             // 
-            this.sfDateTimeEdit2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfDateTimeEdit2.DateTimeIcon = null;
-            this.sfDateTimeEdit2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfDateTimeEdit2.Location = new System.Drawing.Point(530, 126);
-            this.sfDateTimeEdit2.Name = "sfDateTimeEdit2";
-            this.sfDateTimeEdit2.Size = new System.Drawing.Size(261, 28);
-            this.sfDateTimeEdit2.TabIndex = 12;
-            this.sfDateTimeEdit2.ThemeName = "Office2016Colorful";
-            this.sfDateTimeEdit2.ToolTipText = "";
+            this.dModDoB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.dModDoB.DateTimeIcon = null;
+            this.dModDoB.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dModDoB.Location = new System.Drawing.Point(530, 126);
+            this.dModDoB.Name = "dModDoB";
+            this.dModDoB.Size = new System.Drawing.Size(261, 28);
+            this.dModDoB.TabIndex = 12;
+            this.dModDoB.ThemeName = "Office2016Colorful";
+            this.dModDoB.ToolTipText = "";
             // 
-            // textBoxExt3
+            // txtModPhone
             // 
-            this.textBoxExt3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxExt3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.textBoxExt3.BeforeTouchSize = new System.Drawing.Size(261, 26);
-            this.textBoxExt3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.textBoxExt3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBoxExt3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxExt3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.textBoxExt3.Location = new System.Drawing.Point(530, 167);
-            this.textBoxExt3.Name = "textBoxExt3";
-            this.textBoxExt3.Size = new System.Drawing.Size(261, 26);
-            this.textBoxExt3.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
-            this.textBoxExt3.TabIndex = 13;
-            this.textBoxExt3.ThemeName = "Office2016Colorful";
+            this.txtModPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModPhone.BeforeTouchSize = new System.Drawing.Size(261, 26);
+            this.txtModPhone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModPhone.Location = new System.Drawing.Point(530, 167);
+            this.txtModPhone.Name = "txtModPhone";
+            this.txtModPhone.Size = new System.Drawing.Size(261, 26);
+            this.txtModPhone.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModPhone.TabIndex = 13;
+            this.txtModPhone.ThemeName = "Office2016Colorful";
             // 
-            // sfComboBox3
+            // cboModNationality
             // 
-            this.sfComboBox3.AllowDropDownResize = false;
-            this.sfComboBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfComboBox3.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
-            this.sfComboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox3.Location = new System.Drawing.Point(530, 207);
-            this.sfComboBox3.Name = "sfComboBox3";
-            this.sfComboBox3.Size = new System.Drawing.Size(261, 26);
-            this.sfComboBox3.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox3.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox3.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.sfComboBox3.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfComboBox3.TabIndex = 14;
-            this.sfComboBox3.TabStop = false;
-            this.sfComboBox3.ThemeName = "Office2016Colorful";
+            this.cboModNationality.AllowDropDownResize = false;
+            this.cboModNationality.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cboModNationality.DropDownPosition = Syncfusion.WinForms.Core.Enums.PopupRelativeAlignment.Center;
+            this.cboModNationality.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModNationality.Location = new System.Drawing.Point(530, 207);
+            this.cboModNationality.Name = "cboModNationality";
+            this.cboModNationality.Size = new System.Drawing.Size(261, 26);
+            this.cboModNationality.Style.EditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModNationality.Style.ReadOnlyEditorStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModNationality.Style.TokenStyle.CloseButtonBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.cboModNationality.Style.TokenStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboModNationality.TabIndex = 14;
+            this.cboModNationality.TabStop = false;
+            this.cboModNationality.ThemeName = "Office2016Colorful";
             // 
-            // sfButton1
+            // btnMod
             // 
-            this.sfButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton1.Location = new System.Drawing.Point(123, 46);
-            this.sfButton1.Name = "sfButton1";
-            this.sfButton1.Size = new System.Drawing.Size(261, 28);
-            this.sfButton1.TabIndex = 8;
-            this.sfButton1.Text = "Sửa";
-            this.sfButton1.ThemeName = "Office2016Colorful";
+            this.btnMod.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMod.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMod.Location = new System.Drawing.Point(123, 46);
+            this.btnMod.Name = "btnMod";
+            this.btnMod.Size = new System.Drawing.Size(261, 28);
+            this.btnMod.TabIndex = 8;
+            this.btnMod.Text = "Sửa";
+            this.btnMod.ThemeName = "Office2016Colorful";
             // 
-            // sfButton2
+            // btnSave
             // 
-            this.sfButton2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.sfButton2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sfButton2.Location = new System.Drawing.Point(530, 246);
-            this.sfButton2.Name = "sfButton2";
-            this.sfButton2.Size = new System.Drawing.Size(261, 28);
-            this.sfButton2.TabIndex = 15;
-            this.sfButton2.Text = "Lưu";
-            this.sfButton2.ThemeName = "Office2016Colorful";
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSave.Location = new System.Drawing.Point(530, 246);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(261, 28);
+            this.btnSave.TabIndex = 15;
+            this.btnSave.Text = "Lưu";
+            this.btnSave.ThemeName = "Office2016Colorful";
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.Location = new System.Drawing.Point(123, 86);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(261, 28);
+            this.btnCancel.TabIndex = 16;
+            this.btnCancel.Text = "Huỷ";
+            this.btnCancel.ThemeName = "Office2016Colorful";
             // 
             // CustomerPage
             // 
@@ -728,12 +742,12 @@
             this.modPage.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             this.tableLayoutPanel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.textBoxExt3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sfComboBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboCustomer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModFulName)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModUnique)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModGender)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboModNationality)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -756,9 +770,9 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtCustomerPhone;
         private Syncfusion.WinForms.ListView.SfComboBox cboCustomerGender;
         private Syncfusion.WinForms.ListView.SfComboBox cboCustomerNationaity;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit sfDateTimeEdit1;
-        private Syncfusion.WinForms.Controls.SfButton btnAddCustomer;
-        private Syncfusion.WinForms.Controls.SfButton btnCustomerClear;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit dDoB;
+        private Syncfusion.WinForms.Controls.SfButton btnAdd;
+        private Syncfusion.WinForms.Controls.SfButton btnClear;
         private Syncfusion.Windows.Forms.Tools.TabPageAdv modPage;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel7;
@@ -768,14 +782,15 @@
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel11;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel12;
         private Syncfusion.Windows.Forms.Tools.AutoLabel autoLabel13;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt1;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt2;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox2;
-        private Syncfusion.WinForms.Input.SfDateTimeEdit sfDateTimeEdit2;
-        private Syncfusion.Windows.Forms.Tools.TextBoxExt textBoxExt3;
-        private Syncfusion.WinForms.ListView.SfComboBox sfComboBox3;
-        private Syncfusion.WinForms.Controls.SfButton sfButton1;
-        private Syncfusion.WinForms.Controls.SfButton sfButton2;
+        private Syncfusion.WinForms.ListView.SfComboBox cboCustomer;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModFulName;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModUnique;
+        private Syncfusion.WinForms.ListView.SfComboBox cboModGender;
+        private Syncfusion.WinForms.Input.SfDateTimeEdit dModDoB;
+        private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModPhone;
+        private Syncfusion.WinForms.ListView.SfComboBox cboModNationality;
+        private Syncfusion.WinForms.Controls.SfButton btnMod;
+        private Syncfusion.WinForms.Controls.SfButton btnSave;
+        private Syncfusion.WinForms.Controls.SfButton btnCancel;
     }
 }

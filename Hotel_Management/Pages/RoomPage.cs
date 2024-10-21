@@ -1,8 +1,8 @@
 ﻿using Hotel_Management.Models;
 using Hotel_Management.ViewModels;
-using System.Windows.Forms;
 using Syncfusion.WinForms.Controls;
 using Syncfusion.WinForms.DataGrid;
+using System.Windows.Forms;
 
 namespace Hotel_Management.Pages
 {

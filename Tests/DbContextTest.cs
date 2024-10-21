@@ -13,7 +13,7 @@ namespace Hotel_Management.Tests
         [Test]
         public void GetTable()
         {
-            var result = db.GetTable<RoomType>();
+            var result = db.GetTable<RoomType>(page: 2, size: -2);
             Assert.Pass(result.Count().ToString());
         }
 
@@ -29,7 +29,7 @@ namespace Hotel_Management.Tests
         {
             Employee empl = db.AddRow(new Employee()
             {
-                Name = "Lê Ngọc Cường",
+                FullName = "Lê Ngọc Cường",
                 Phone = "0868937404",
                 UniqueNumber = "031204000632",
                 Address = "Bà Điểm, Hóc Môn, TP.HCM",
@@ -80,7 +80,7 @@ namespace Hotel_Management.Tests
         {
             Employee test1 = new Employee()
             {
-                Name = "Test 1",
+                FullName = "Test 1",
                 Phone = "1650173488",
                 UniqueNumber = "433711744341",
                 Address = "Test 1",
@@ -88,11 +88,11 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test1).Name == test1.Name)
-                TestContext.WriteLine(test1.Name);
+            if (db.AddRow(test1).FullName == test1.FullName)
+                TestContext.WriteLine(test1.FullName);
             Employee test2 = new Employee()
             {
-                Name = "Test 2",
+                FullName = "Test 2",
                 Phone = "9456300926",
                 UniqueNumber = "119296133729",
                 Address = "Test 2",
@@ -100,11 +100,11 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test2).Name == test2.Name)
-                TestContext.WriteLine(test2.Name);
+            if (db.AddRow(test2).FullName == test2.FullName)
+                TestContext.WriteLine(test2.FullName);
             Employee test3 = new Employee()
             {
-                Name = "Test 3",
+                FullName = "Test 3",
                 Phone = "4032312399",
                 UniqueNumber = "321754829448",
                 Address = "Test 3",
@@ -112,8 +112,8 @@ namespace Hotel_Management.Tests
                 Position = "1",
                 DoW = DateTime.Now,
             };
-            if (db.AddRow(test3).Name == test3.Name)
-                TestContext.WriteLine(test3.Name);
+            if (db.AddRow(test3).FullName == test3.FullName)
+                TestContext.WriteLine(test3.FullName);
             int result = db.DeleteRows<Employee>(x => x.Position == "1");
             ClassicAssert.AreEqual(3, result);
         }

@@ -48,6 +48,7 @@
             this.txtPhone = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.txtAddress = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.btnAdd = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnClear = new Syncfusion.WinForms.Controls.SfButton();
             this.modPage = new Syncfusion.Windows.Forms.Tools.TabPageAdv();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.autoLabel8 = new Syncfusion.Windows.Forms.Tools.AutoLabel();
@@ -65,10 +66,10 @@
             this.cboModGender = new Syncfusion.WinForms.ListView.SfComboBox();
             this.txtModPosition = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.dModDoB = new Syncfusion.WinForms.Input.SfDateTimeEdit();
-            this.txtModPhone = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.txtModAddress = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
+            this.txtModPhone = new Syncfusion.Windows.Forms.Tools.TextBoxExt();
             this.btnSave = new Syncfusion.WinForms.Controls.SfButton();
-            this.btnClear = new Syncfusion.WinForms.Controls.SfButton();
+            this.btnCancel = new Syncfusion.WinForms.Controls.SfButton();
             ((System.ComponentModel.ISupportInitialize)(this.employeeTabControl)).BeginInit();
             this.employeeTabControl.SuspendLayout();
             this.listPage.SuspendLayout();
@@ -88,8 +89,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtModUnique)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboModGender)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModPosition)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModAddress)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).BeginInit();
             this.SuspendLayout();
             // 
             // employeeTabControl
@@ -424,9 +425,22 @@
             this.btnAdd.Text = "Thêm";
             this.btnAdd.ThemeName = "Office2016Colorful";
             // 
+            // btnClear
+            // 
+            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnClear.Location = new System.Drawing.Point(530, 166);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(261, 28);
+            this.btnClear.TabIndex = 15;
+            this.btnClear.Text = "Xoá";
+            this.btnClear.ThemeName = "Office2016Colorful";
+            // 
             // modPage
             // 
+            this.modPage.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             this.modPage.Controls.Add(this.tableLayoutPanel2);
+            this.modPage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(38)))), ((int)(((byte)(38)))), ((int)(((byte)(38)))));
             this.modPage.Image = null;
             this.modPage.ImageSize = new System.Drawing.Size(16, 16);
             this.modPage.Location = new System.Drawing.Point(2, 26);
@@ -464,10 +478,12 @@
             this.tableLayoutPanel2.Controls.Add(this.txtModAddress, 4, 6);
             this.tableLayoutPanel2.Controls.Add(this.txtModPhone, 4, 5);
             this.tableLayoutPanel2.Controls.Add(this.btnSave, 4, 7);
+            this.tableLayoutPanel2.Controls.Add(this.btnCancel, 1, 2);
             this.tableLayoutPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel2.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel2.Name = "tableLayoutPanel2";
-            this.tableLayoutPanel2.RowCount = 9;
+            this.tableLayoutPanel2.RowCount = 10;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
@@ -675,22 +691,6 @@
             this.dModDoB.ThemeName = "Office2016Colorful";
             this.dModDoB.ToolTipText = "";
             // 
-            // txtModPhone
-            // 
-            this.txtModPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtModPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.txtModPhone.BeforeTouchSize = new System.Drawing.Size(261, 26);
-            this.txtModPhone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
-            this.txtModPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtModPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtModPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
-            this.txtModPhone.Location = new System.Drawing.Point(530, 207);
-            this.txtModPhone.Name = "txtModPhone";
-            this.txtModPhone.Size = new System.Drawing.Size(261, 26);
-            this.txtModPhone.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
-            this.txtModPhone.TabIndex = 15;
-            this.txtModPhone.ThemeName = "Office2016Colorful";
-            // 
             // txtModAddress
             // 
             this.txtModAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -707,6 +707,22 @@
             this.txtModAddress.TabIndex = 16;
             this.txtModAddress.ThemeName = "Office2016Colorful";
             // 
+            // txtModPhone
+            // 
+            this.txtModPhone.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtModPhone.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.txtModPhone.BeforeTouchSize = new System.Drawing.Size(261, 26);
+            this.txtModPhone.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(197)))), ((int)(((byte)(197)))), ((int)(((byte)(197)))));
+            this.txtModPhone.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtModPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtModPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(68)))), ((int)(((byte)(68)))));
+            this.txtModPhone.Location = new System.Drawing.Point(530, 207);
+            this.txtModPhone.Name = "txtModPhone";
+            this.txtModPhone.Size = new System.Drawing.Size(261, 26);
+            this.txtModPhone.Style = Syncfusion.Windows.Forms.Tools.TextBoxExt.theme.Office2016Colorful;
+            this.txtModPhone.TabIndex = 15;
+            this.txtModPhone.ThemeName = "Office2016Colorful";
+            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
@@ -718,16 +734,16 @@
             this.btnSave.Text = "Lưu";
             this.btnSave.ThemeName = "Office2016Colorful";
             // 
-            // btnClear
+            // btnCancel
             // 
-            this.btnClear.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btnClear.Location = new System.Drawing.Point(530, 166);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(261, 28);
-            this.btnClear.TabIndex = 15;
-            this.btnClear.Text = "Xoá";
-            this.btnClear.ThemeName = "Office2016Colorful";
+            this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.btnCancel.Location = new System.Drawing.Point(123, 86);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(261, 28);
+            this.btnCancel.TabIndex = 18;
+            this.btnCancel.Text = "Huỷ";
+            this.btnCancel.ThemeName = "Office2016Colorful";
             // 
             // EmployeePage
             // 
@@ -765,8 +781,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.txtModUnique)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboModGender)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModPosition)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtModAddress)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txtModPhone)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -814,5 +830,6 @@
         private Syncfusion.Windows.Forms.Tools.TextBoxExt txtModPhone;
         private Syncfusion.WinForms.Controls.SfButton btnSave;
         private Syncfusion.WinForms.Controls.SfButton btnClear;
+        private Syncfusion.WinForms.Controls.SfButton btnCancel;
     }
 }

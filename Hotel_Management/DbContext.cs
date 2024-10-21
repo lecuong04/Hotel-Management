@@ -57,15 +57,21 @@ namespace Hotel_Management
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings[text].ConnectionString;
         }
 
-        public IEnumerable<T> GetTable<T>(Func<T, bool> predicate = null)
+        public IEnumerable<T> GetTable<T>(Func<T, bool> predicate = null, int page = 1, int size = 0)
         {
             List<T> result = new List<T>();
+            if (page < 1 || size < 0)
+                return result;
             Type type = typeof(T);
             TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
             if (tableAttr == null)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM {tableAttr.Name}";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
+            if (size > 0)
+            {
+                cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
+            }
             cmd.CommandType = CommandType.Text;
             try
             {
@@ -91,6 +97,7 @@ namespace Hotel_Management
                     }
                     else
                         result.Add(curr);
+
                 }
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
@@ -101,68 +108,6 @@ namespace Hotel_Management
             }
             return result;
         }
-
-        //public bool AddRow<T>(T data)
-        //{
-        //    bool result = false;
-        //    if (data == null)
-        //        return result;
-        //    Type type = typeof(T);
-        //    TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
-        //    if (tableAttr == null)
-        //        return result;
-        //    List<string> keys = new List<string>();
-        //    List<object> values = new List<object>();
-
-        //    PropertyInfo[] properties = type.GetProperties();
-        //    foreach (PropertyInfo property in properties)
-        //    {
-        //        ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-        //        if (columnAttr == null || columnAttr.IsIdentity)
-        //            continue;
-        //        object value = property.GetValue(data, null);
-        //        if (value == null || value.ToString().Length == 0)
-        //            continue;
-        //        Type pType = property.PropertyType;
-        //        if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
-        //            values.Add(value);
-        //        else if (pType == typeof(DateTime))
-        //        {
-        //            DateTime dt = (DateTime)value;
-        //            if (dt.Year == 1)
-        //                continue;
-        //            else
-        //                values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
-        //        }
-        //        else if (pType == typeof(bool))
-        //        {
-        //            if ((bool)value)
-        //                values.Add(1);
-        //            else
-        //                values.Add(0);
-        //        }
-        //        else
-        //            values.Add($"N'{value}'");
-        //        keys.Add(columnAttr.Name);
-        //    }
-        //    SqlCommand cmd = conn.CreateCommand();
-        //    cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) VALUES ({string.Join(", ", values)})";
-        //    cmd.CommandType = CommandType.Text;
-        //    try
-        //    {
-        //        if (conn.State == ConnectionState.Closed)
-        //            conn.Open();
-        //        if (cmd.ExecuteNonQuery() != 0)
-        //            result = true;
-        //        if (conn.State == ConnectionState.Open)
-        //            conn.Close();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Console.WriteLine(ex.ToString());
-        //    }
-        //    return result;
-        //}
 
         public T AddRow<T>(T data)
         {
@@ -225,7 +170,7 @@ namespace Hotel_Management
                             continue;
                         property.SetValue(result, pValue, null);
                     }
-                }                
+                }
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }

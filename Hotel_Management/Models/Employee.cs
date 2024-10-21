@@ -8,7 +8,7 @@ namespace Hotel_Management.Models
         [Column("MANV", true, true)]
         public int Id { get; set; }
         [Column("TENNV")]
-        public string Name { get; set; }
+        public string FullName { get; set; }
         [Column("NGSINH")]
         public DateTime DoB { get; set; } // Ngày sinh
         [Column("SDT")]

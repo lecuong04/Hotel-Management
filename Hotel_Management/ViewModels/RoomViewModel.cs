@@ -34,11 +34,11 @@ namespace Hotel_Management.ViewModels
             MaxPeople = type.MaxPeople;
         }
 
-        public static IEnumerable<RoomViewModel> GetRooms(DbContext context)
+        public static IEnumerable<RoomViewModel> GetRooms(DbContext db)
         {
-            foreach (Room room in context.GetTable<Room>())
+            foreach (Room room in db.GetTable<Room>())
             {
-                yield return new RoomViewModel(room, context);
+                yield return new RoomViewModel(room, db);
             }
         }
     }

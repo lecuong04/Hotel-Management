@@ -1,9 +1,7 @@
 ﻿using Hotel_Management.Models;
-using Hotel_Management.Models.Extensions;
 using Syncfusion.WinForms.Controls;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -125,7 +123,7 @@ namespace Hotel_Management.Forms
                     DateTime now = DateTime.Now;
                     Employee empl = db.AddRow(new Employee()
                     {
-                        Name = fullName,
+                        FullName = fullName,
                         Address = address,
                         Gender = gender,
                         Phone = phone,

@@ -18,7 +18,7 @@ namespace Hotel_Management.Pages
         private void EmployeePage_Load(object sender, EventArgs e)
         {
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Id", HeaderText = "Mã nhân viên" });
-            employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Name", HeaderText = "Họ tên" });
+            employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "FullName", HeaderText = "Họ tên" });
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "DoB", HeaderText = "Ngày sinh", Format = "dd-MM-yyyy" });
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "Phone", HeaderText = "Số điện thoại" });
             employeeDataGrid.Columns.Add(new GridTextColumn() { MappingName = "UniqueNumber", HeaderText = "Mã căn cước" });
