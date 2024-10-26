@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Text;
 
 namespace Hotel_Management
 {
@@ -57,7 +59,7 @@ namespace Hotel_Management
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings[text].ConnectionString;
         }
 
-        public IEnumerable<T> GetTable<T>(Func<T, bool> predicate = null, int page = 1, int size = 0)
+        public IEnumerable<T> GetTable<T>(Expression<Func<T, bool>> predicate = null, int page = 1, int size = 0)
         {
             List<T> result = new List<T>();
             if (page < 1 || size < 0)
@@ -67,11 +69,10 @@ namespace Hotel_Management
             if (tableAttr == null)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
+            string condition = predicate != null ? $"WHERE {ExpressionToSql.ToSql(predicate)}" : "";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} {condition} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
             if (size > 0)
-            {
                 cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
-            }
             cmd.CommandType = CommandType.Text;
             try
             {
@@ -92,7 +93,7 @@ namespace Hotel_Management
                     }
                     if (predicate != null)
                     {
-                        if (predicate(curr))
+                        if (predicate.Compile()(curr))
                             result.Add(curr);
                     }
                     else
@@ -260,7 +261,7 @@ namespace Hotel_Management
             return result;
         }
 
-        public int DeleteRows<T>(Func<T, bool> predicate)
+        public int DeleteRows<T>(Expression<Func<T, bool>> predicate)
         {
             int result = 0;
             Type type = typeof(T);
@@ -333,4 +334,95 @@ namespace Hotel_Management
             }
         }
     }
+
+    public static class ExpressionToSql
+    {
+        public static string ToSql<T>(Expression<Func<T, bool>> expression) => new SqlExpressionVisitor().Translate(expression.Body, typeof(T));
+
+        private class SqlExpressionVisitor : ExpressionVisitor
+        {
+            private StringBuilder sb;
+            private Dictionary<string, string> columns;
+
+            private Dictionary<string, string> GetColumns(Type type)
+            {
+                Dictionary<string, string> result = new Dictionary<string, string>();
+                foreach (PropertyInfo property in type.GetProperties())
+                    result.Add(property.Name, ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name);
+                return result;
+            }
+
+            public string Translate(Expression expression, Type type)
+            {
+                columns = GetColumns(type);
+                sb = new StringBuilder();
+                Visit(expression);
+                return sb.ToString();
+            }
+
+            protected override Expression VisitBinary(BinaryExpression node)
+            {
+                sb.Append("(");
+
+                Visit(node.Left);
+                sb.Append($" {GetSqlOperator(node.NodeType)} ");
+                if (node.Right.Type == typeof(DateTime))
+                {
+                    var lambda = Expression.Lambda(node.Right);
+                    var value = lambda.Compile().DynamicInvoke();
+
+                    if (value is DateTime dateValue)
+                        sb.Append($"'{dateValue:yyyy-MM-dd HH:mm:ss}'");
+                    else
+                        sb.Append(value);
+                }
+                else
+                    Visit(node.Right);
+
+                sb.Append(")");
+                return node;
+            }
+
+            protected override Expression VisitMember(MemberExpression node)
+            {
+                sb.Append(columns[node.Member.Name]);
+                return node;
+            }
+
+            protected override Expression VisitConstant(ConstantExpression node)
+            {
+                if (node.Type == typeof(string))
+                    sb.Append($"N'{node.Value}'");
+                else
+                    sb.Append(node.Value);
+                return node;
+            }
+
+            private string GetSqlOperator(ExpressionType type)
+            {
+                switch (type)
+                {
+                    case ExpressionType.Equal:
+                        return "=";
+                    case ExpressionType.NotEqual:
+                        return "<>";
+                    case ExpressionType.GreaterThan:
+                        return ">";
+                    case ExpressionType.GreaterThanOrEqual:
+                        return ">=";
+                    case ExpressionType.LessThan:
+                        return "<";
+                    case ExpressionType.LessThanOrEqual:
+                        return "<=";
+                    case ExpressionType.AndAlso:
+                        return "AND";
+                    case ExpressionType.OrElse:
+                        return "OR";
+                    default:
+                        throw new NotSupportedException($"Operator {type} is not supported.");
+                }
+            }
+        }
+    }
+
 }
