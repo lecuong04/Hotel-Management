@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
@@ -105,7 +106,7 @@ namespace Hotel_Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.WriteLine(ex);
             }
             return result;
         }
@@ -140,7 +141,7 @@ namespace Hotel_Management
                     if (dt.Year == 1)
                         continue;
                     else
-                        values.Add($"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'");
+                        values.Add($"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'");
                 }
                 else if (pType == typeof(bool))
                 {
@@ -177,7 +178,7 @@ namespace Hotel_Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.WriteLine(ex);
             }
             return result;
         }
@@ -213,7 +214,7 @@ namespace Hotel_Management
                         if (dt == new DateTime())
                             continue;
                         else
-                            fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                            fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
                     }
                     else if (pType == typeof(bool))
                         fValue = (bool)value ? 1 : 0;
@@ -231,7 +232,7 @@ namespace Hotel_Management
                         if (dt.Year == 1)
                             continue;
                         else
-                            fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                            fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
                     }
                     else if (pType == typeof(bool))
                         fValue = (bool)value ? 1 : 0;
@@ -256,9 +257,67 @@ namespace Hotel_Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.WriteLine(ex);
             }
             return result;
+        }
+
+        public bool DeleteRow<T>(T obj)
+        {
+            if (obj == null)
+                return false;
+            Type type = typeof(T);
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null) return false;
+            SqlCommand cmd = conn.CreateCommand();
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                List<string> where = new List<string>();
+                PropertyInfo[] properties = type.GetProperties();
+                foreach (PropertyInfo property in properties)
+                {
+                    ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                    if (columnAttr == null) continue;
+                    object value = property.GetValue(obj, null);
+                    Type pType = property.PropertyType;
+                    object fValue = null;
+                    if (columnAttr.IsPrimaryKey)
+                    {
+                        if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+                            fValue = value;
+                        else if (pType == typeof(DateTime))
+                        {
+                            DateTime dt = (DateTime)value;
+                            if (dt.Year == 1)
+                                continue;
+                            else
+                                fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
+                        }
+                        else if (pType == typeof(bool))
+                            fValue = (bool)value ? 1 : 0;
+                        else
+                            fValue = $"N'{value}'";
+                        where.Add($"{columnAttr.Name} = {fValue}");
+                    }
+                }
+                if (where.Count == 0) return false;
+                cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(", ", where)}";
+                int result = cmd.ExecuteNonQuery();
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+                if (result == 0)
+                    return false;
+                else
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return false;
         }
 
         public int DeleteRows<T>(Expression<Func<T, bool>> predicate)
@@ -267,7 +326,7 @@ namespace Hotel_Management
             Type type = typeof(T);
             TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
             if (tableAttr == null) return result;
-            IEnumerable<T> list = GetTable<T>(predicate);
+            IEnumerable<T> list = GetTable(predicate);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
             try
@@ -295,7 +354,7 @@ namespace Hotel_Management
                                 if (dt.Year == 1)
                                     continue;
                                 else
-                                    fValue = $"'{((DateTime)value).ToString("yyyy-MM-dd HH:mm:ss")}'";
+                                    fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
                             }
                             else if (pType == typeof(bool))
                                 fValue = (bool)value ? 1 : 0;
@@ -304,6 +363,7 @@ namespace Hotel_Management
                             where.Add($"{columnAttr.Name} = {fValue}");
                         }
                     }
+                    if (where.Count == 0) return 0;
                     cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(", ", where)}";
                     result += cmd.ExecuteNonQuery();
                 }
@@ -312,7 +372,7 @@ namespace Hotel_Management
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Debug.WriteLine(ex);
             }
             return result;
         }
