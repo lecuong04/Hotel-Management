@@ -80,6 +80,7 @@ namespace Hotel_Management
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
                 PropertyInfo[] properties = type.GetProperties();
+                Debug.WriteLine(cmd.CommandText);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
@@ -99,7 +100,6 @@ namespace Hotel_Management
                     }
                     else
                         result.Add(curr);
-
                 }
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
@@ -161,17 +161,24 @@ namespace Hotel_Management
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
+                Debug.WriteLine(cmd.CommandText);
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                try
                 {
-                    foreach (PropertyInfo property in properties)
+                    while (reader.Read())
                     {
-                        string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
-                        object pValue = reader[column];
-                        if (column.Length == 0 || pValue.ToString().Length == 0)
-                            continue;
-                        property.SetValue(result, pValue, null);
+                        foreach (PropertyInfo property in properties)
+                        {
+                            string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                            object pValue = reader[column];
+                            if (column.Length == 0 || pValue.ToString().Length == 0)
+                                continue;
+                            property.SetValue(result, pValue, null);
+                        }
                     }
+                }
+                catch { 
+                    reader.Close();
                 }
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
@@ -244,12 +251,13 @@ namespace Hotel_Management
             if (where.Count == 0)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE {tableAttr.Name} SET {string.Join(", ", sets)} WHERE {string.Join(", ", where)}";
+            cmd.CommandText = $"UPDATE {tableAttr.Name} SET {string.Join(", ", sets)} WHERE {string.Join(" AND ", where)}";
             cmd.CommandType = CommandType.Text;
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
+                Debug.WriteLine(cmd.CommandText);
                 if (cmd.ExecuteNonQuery() != 0)
                     result = true;
                 if (conn.State == ConnectionState.Open)
@@ -304,7 +312,8 @@ namespace Hotel_Management
                     }
                 }
                 if (where.Count == 0) return false;
-                cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(", ", where)}";
+                cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(" AND ", where)}";
+                Debug.WriteLine(cmd.CommandText);
                 int result = cmd.ExecuteNonQuery();
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
@@ -326,47 +335,20 @@ namespace Hotel_Management
             Type type = typeof(T);
             TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
             if (tableAttr == null) return result;
-            IEnumerable<T> list = GetTable(predicate);
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
             try
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
-                foreach (T c in list)
-                {
-                    List<string> where = new List<string>();
-                    PropertyInfo[] properties = type.GetProperties();
-                    foreach (PropertyInfo property in properties)
-                    {
-                        ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-                        if (columnAttr == null) continue;
-                        object value = property.GetValue(c, null);
-                        Type pType = property.PropertyType;
-                        object fValue = null;
-                        if (columnAttr.IsPrimaryKey)
-                        {
-                            if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
-                                fValue = value;
-                            else if (pType == typeof(DateTime))
-                            {
-                                DateTime dt = (DateTime)value;
-                                if (dt.Year == 1)
-                                    continue;
-                                else
-                                    fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
-                            }
-                            else if (pType == typeof(bool))
-                                fValue = (bool)value ? 1 : 0;
-                            else
-                                fValue = $"N'{value}'";
-                            where.Add($"{columnAttr.Name} = {fValue}");
-                        }
-                    }
-                    if (where.Count == 0) return 0;
-                    cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(", ", where)}";
-                    result += cmd.ExecuteNonQuery();
-                }
+                string condition = ExpressionToSql.ToSql(predicate);
+                if (condition.Length == 0)
+                    return result;
+                else
+                    condition = $"WHERE {condition}";
+                cmd.CommandText = $"DELETE FROM {tableAttr.Name} {condition}";
+                Debug.WriteLine(cmd.CommandText);
+                result += cmd.ExecuteNonQuery();
                 if (conn.State == ConnectionState.Open)
                     conn.Close();
             }
@@ -403,6 +385,7 @@ namespace Hotel_Management
         {
             private StringBuilder sb;
             private Dictionary<string, string> columns;
+            private bool isContainsMethod = false;
 
             private Dictionary<string, string> GetColumns(Type type)
             {
@@ -417,20 +400,21 @@ namespace Hotel_Management
                 columns = GetColumns(type);
                 sb = new StringBuilder();
                 Visit(expression);
-                return sb.ToString();
+                if (!isContainsMethod)
+                    return sb.ToString();
+                else
+                    return string.Empty;
             }
 
             protected override Expression VisitBinary(BinaryExpression node)
             {
                 sb.Append("(");
-
                 Visit(node.Left);
                 sb.Append($" {GetSqlOperator(node.NodeType)} ");
                 if (node.Right.Type == typeof(DateTime))
                 {
                     var lambda = Expression.Lambda(node.Right);
                     var value = lambda.Compile().DynamicInvoke();
-
                     if (value is DateTime dateValue)
                         sb.Append($"'{dateValue:yyyy-MM-dd HH:mm:ss}'");
                     else
@@ -438,7 +422,6 @@ namespace Hotel_Management
                 }
                 else
                     Visit(node.Right);
-
                 sb.Append(")");
                 return node;
             }
@@ -455,6 +438,13 @@ namespace Hotel_Management
                     sb.Append($"N'{node.Value}'");
                 else
                     sb.Append(node.Value);
+                return node;
+            }
+
+            protected override Expression VisitMethodCall(MethodCallExpression node)
+            {
+                isContainsMethod = true;
+                Debug.WriteLine($"Skip: {node.Method.Name}");
                 return node;
             }
 
