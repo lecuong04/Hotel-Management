@@ -70,7 +70,9 @@ namespace Hotel_Management
             if (tableAttr == null)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            string condition = predicate != null ? $"WHERE {ExpressionToSql.ToSql(predicate)}" : "";
+            string condition = predicate != null ? ExpressionToSql.ToSql(predicate, false) : "";
+            if (condition.Length != 0)
+                condition = $"WHERE {condition}";
             cmd.CommandText = $"SELECT * FROM {tableAttr.Name} {condition} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
             if (size > 0)
                 cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
@@ -341,7 +343,7 @@ namespace Hotel_Management
             {
                 if (conn.State == ConnectionState.Closed)
                     conn.Open();
-                string condition = ExpressionToSql.ToSql(predicate);
+                string condition = ExpressionToSql.ToSql(predicate, true);
                 if (condition.Length == 0)
                     return result;
                 else
@@ -379,13 +381,14 @@ namespace Hotel_Management
 
     public static class ExpressionToSql
     {
-        public static string ToSql<T>(Expression<Func<T, bool>> expression) => new SqlExpressionVisitor().Translate(expression.Body, typeof(T));
+        public static string ToSql<T>(Expression<Func<T, bool>> expression, bool breakWhenDetectMethod = true) => new SqlExpressionVisitor().Translate(expression.Body, typeof(T), breakWhenDetectMethod);
 
         private class SqlExpressionVisitor : ExpressionVisitor
         {
             private StringBuilder sb;
             private Dictionary<string, string> columns;
             private bool isContainsMethod = false;
+            private bool breakWhenDetectMethod = true;
 
             private Dictionary<string, string> GetColumns(Type type)
             {
@@ -395,15 +398,21 @@ namespace Hotel_Management
                 return result;
             }
 
-            public string Translate(Expression expression, Type type)
+            public string Translate(Expression expression, Type type, bool breakWhenDetectMethod)
             {
                 columns = GetColumns(type);
+                this.breakWhenDetectMethod = breakWhenDetectMethod;
                 sb = new StringBuilder();
                 Visit(expression);
                 if (!isContainsMethod)
                     return sb.ToString();
                 else
-                    return string.Empty;
+                {
+                    if (breakWhenDetectMethod)
+                        return string.Empty;
+                    else
+                        return sb.ToString();
+                }
             }
 
             protected override Expression VisitBinary(BinaryExpression node)
@@ -444,7 +453,7 @@ namespace Hotel_Management
             protected override Expression VisitMethodCall(MethodCallExpression node)
             {
                 isContainsMethod = true;
-                Debug.WriteLine($"Skip: {node.Method.Name}");
+                sb.Append("(1 = 1)");
                 return node;
             }
 
