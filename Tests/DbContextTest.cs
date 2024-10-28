@@ -3,6 +3,8 @@ using NUnit.Framework;
 using NUnit.Framework.Legacy;
 using System;
 using System.Linq;
+using System.Linq.Expressions;
+
 namespace Hotel_Management.Tests
 {
     [TestFixture]
@@ -13,15 +15,16 @@ namespace Hotel_Management.Tests
         [Test]
         public void GetTable()
         {
-            var result = db.GetTable<RoomType>(page: 2, size: -2);
-            Assert.Pass(result.Count().ToString());
+            Expression<Func<Employee, bool>> condition = x => x.Gender == "Nữ" || x.Phone.StartsWith("0");
+            var _1 = db.GetTable<Employee>(condition);
+            TestContext.Write(_1.Count());
         }
-
+        
         [Test]
-        public void GetRow()
+        public void GetTableTest()
         {
-            Room room = db.GetTable<Room>(x => x.Id == 3).First();
-            RoomType type = db.GetTable<RoomType>(x => x.Id == room.RoomType).First();
+            var room = db.GetTable("SELECT * FROM LOAIPHONG").Parse<RoomType>();
+            Assert.Pass(room.Count().ToString());
         }
 
         [Test]
@@ -76,6 +79,26 @@ namespace Hotel_Management.Tests
         }
 
         [Test]
+        public void DeleteRow() {
+            Employee test1 = new Employee()
+            {
+                FullName = "Test 1",
+                Phone = "1650173488",
+                UniqueNumber = "433711744341",
+                Address = "Test 1",
+                Gender = "Nam",
+                Position = "1",
+                DoW = DateTime.Now,
+            };
+            Employee result = db.AddRow(test1);
+            if (result.FullName == test1.FullName)
+            {
+                TestContext.WriteLine(test1.FullName);
+                TestContext.WriteLine(db.DeleteRow(result));
+            }
+        }
+
+        [Test]
         public void DeleteRows()
         {
             Employee test1 = new Employee()
@@ -114,7 +137,7 @@ namespace Hotel_Management.Tests
             };
             if (db.AddRow(test3).FullName == test3.FullName)
                 TestContext.WriteLine(test3.FullName);
-            int result = db.DeleteRows<Employee>(x => x.Position == "1");
+            int result = db.DeleteRows<Employee>(x => x.Position == "1" || x.Gender == "Nam");
             ClassicAssert.AreEqual(3, result);
         }
     }

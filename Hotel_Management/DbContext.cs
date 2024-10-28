@@ -36,6 +36,30 @@ namespace Hotel_Management
         }
     }
 
+    public static class DbContextExtensions
+    {
+        public static IEnumerable<T> Parse<T>(this DataTable table)
+        {
+            List<T> result = new List<T>();
+            Type type = typeof(T);
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (DataRow row in table.Rows)
+            {
+                T curr = (T)Activator.CreateInstance(type);
+                foreach (PropertyInfo property in properties)
+                {
+                    string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                    object pValue = row[column];
+                    if (column.Length == 0 || pValue.ToString().Length == 0)
+                        continue;
+                    property.SetValue(curr, pValue, null);
+                }
+                result.Add(curr);
+            }
+            return result;
+        }
+    }
+
     public class DbContext
     {
         public enum ConnectionType
@@ -113,12 +137,68 @@ namespace Hotel_Management
             return result;
         }
 
-        public T AddRow<T>(T data)
+        public IEnumerable<T> GetTable<T>(string whereCondition, int page = 1, int size = 0)
         {
-            T result = (T)Activator.CreateInstance(typeof(T));
-            if (data == null)
+            List<T> result = new List<T>();
+            if (page < 1 || size < 0)
                 return result;
             Type type = typeof(T);
+            TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
+            if (tableAttr == null)
+                return result;
+            SqlCommand cmd = conn.CreateCommand();
+            if (whereCondition.Length != 0)
+                whereCondition = $"WHERE {whereCondition}";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} {whereCondition} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
+            if (size > 0)
+                cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                if (conn.State == ConnectionState.Closed)
+                    conn.Open();
+                PropertyInfo[] properties = type.GetProperties();
+                Debug.WriteLine(cmd.CommandText);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    T curr = (T)Activator.CreateInstance(type);
+                    foreach (PropertyInfo property in properties)
+                    {
+                        string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                        object pValue = reader[column];
+                        if (column.Length == 0 || pValue.ToString().Length == 0)
+                            continue;
+                        property.SetValue(curr, pValue, null);
+                    }
+                    result.Add(curr);
+                }
+                if (conn.State == ConnectionState.Open)
+                    conn.Close();
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return result;
+        }
+
+        public DataTable GetTable(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.CommandType = CommandType.Text;
+            SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+            return dt;
+        }
+
+        public T AddRow<T>(T data)
+        {
+            Type type = typeof(T);
+            T result = (T)Activator.CreateInstance(type);
+            if (data == null)
+                return result;
             TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
             if (tableAttr == null)
                 return result;
