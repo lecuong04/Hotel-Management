@@ -4,9 +4,9 @@ using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Text;
 
 namespace Hotel_Management
 {
@@ -48,11 +48,20 @@ namespace Hotel_Management
                 T curr = (T)Activator.CreateInstance(type);
                 foreach (PropertyInfo property in properties)
                 {
-                    string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                    ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                    if (columnAttr == null) continue;
+                    string column = columnAttr.Name;
                     object pValue = row[column];
-                    if (column.Length == 0 || pValue.ToString().Length == 0)
+                    if (pValue.ToString().Length == 0)
                         continue;
-                    property.SetValue(curr, pValue, null);
+                    try
+                    {
+                        property.SetValue(curr, pValue, null);
+                    }
+                    catch (Exception ex) { 
+                        Debug.WriteLine(ex);
+                        return Enumerable.Empty<T>();
+                    }
                 }
                 result.Add(curr);
             }
@@ -84,6 +93,18 @@ namespace Hotel_Management
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings[text].ConnectionString;
         }
 
+        private void Open()
+        {
+            if (conn.State == ConnectionState.Closed)
+                conn.Open();
+        }
+
+        private void Close()
+        {
+            if (conn.State == ConnectionState.Open)
+                conn.Close();
+        }
+
         public IEnumerable<T> GetTable<T>(Expression<Func<T, bool>> predicate = null, int page = 1, int size = 0)
         {
             List<T> result = new List<T>();
@@ -94,45 +115,45 @@ namespace Hotel_Management
             if (tableAttr == null)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            string condition = predicate != null ? ExpressionToSql.ToSql(predicate, false) : "";
-            if (condition.Length != 0)
-                condition = $"WHERE {condition}";
-            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} {condition} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
             if (size > 0)
                 cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
             cmd.CommandType = CommandType.Text;
+            PropertyInfo[] properties = type.GetProperties();
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                PropertyInfo[] properties = type.GetProperties();
-                Debug.WriteLine(cmd.CommandText);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    T curr = (T)Activator.CreateInstance(typeof(T));
-                    foreach (PropertyInfo property in properties)
+                    while (reader.Read())
                     {
-                        string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
-                        object pValue = reader[column];
-                        if (column.Length == 0 || pValue.ToString().Length == 0)
-                            continue;
-                        property.SetValue(curr, pValue, null);
-                    }
-                    if (predicate != null)
-                    {
-                        if (predicate.Compile()(curr))
+                        T curr = (T)Activator.CreateInstance(typeof(T));
+                        foreach (PropertyInfo property in properties)
+                        {
+                            ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                            if (columnAttr == null) continue;
+                            string column = columnAttr.Name;
+                            object pValue = reader[column];
+                            if (pValue.ToString().Length == 0)
+                                continue;
+                            property.SetValue(curr, pValue, null);
+                        }
+                        if (predicate != null)
+                        {
+                            if (predicate.Compile()(curr))
+                                result.Add(curr);
+                        }
+                        else
                             result.Add(curr);
                     }
-                    else
-                        result.Add(curr);
                 }
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                Close();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
+                return Enumerable.Empty<T>();
             }
             return result;
         }
@@ -148,37 +169,40 @@ namespace Hotel_Management
                 return result;
             SqlCommand cmd = conn.CreateCommand();
             if (whereCondition.Length != 0)
-                whereCondition = $"WHERE {whereCondition}";
-            cmd.CommandText = $"SELECT * FROM {tableAttr.Name} {whereCondition} ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
+                whereCondition = $" WHERE {whereCondition} ";
+            cmd.CommandText = $"SELECT * FROM {tableAttr.Name}{whereCondition}ORDER BY (SELECT NULL) OFFSET {(page - 1) * size} ROWS";
             if (size > 0)
                 cmd.CommandText += $" FETCH NEXT {size} ROWS ONLY";
             cmd.CommandType = CommandType.Text;
+            PropertyInfo[] properties = type.GetProperties();
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                PropertyInfo[] properties = type.GetProperties();
-                Debug.WriteLine(cmd.CommandText);
-                SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
-                    T curr = (T)Activator.CreateInstance(type);
-                    foreach (PropertyInfo property in properties)
+                    while (reader.Read())
                     {
-                        string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
-                        object pValue = reader[column];
-                        if (column.Length == 0 || pValue.ToString().Length == 0)
-                            continue;
-                        property.SetValue(curr, pValue, null);
+                        T curr = (T)Activator.CreateInstance(type);
+                        foreach (PropertyInfo property in properties)
+                        {
+                            ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                            if (columnAttr == null) continue;
+                            string column = columnAttr.Name;
+                            object pValue = reader[column];
+                            if (pValue.ToString().Length == 0)
+                                continue;
+                            property.SetValue(curr, pValue, null);
+                        }
+                        result.Add(curr);
                     }
-                    result.Add(curr);
                 }
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                Close();
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
+                return Enumerable.Empty<T>();
             }
             return result;
         }
@@ -189,8 +213,53 @@ namespace Hotel_Management
             cmd.CommandType = CommandType.Text;
             SqlDataAdapter adapter = new SqlDataAdapter(cmd);
             DataTable dt = new DataTable();
-            adapter.Fill(dt);
-            return dt;
+            try
+            {
+                adapter.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+            }
+            return null;
+        }
+
+        public object ExecuteScalar(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                Open();
+                object data = cmd.ExecuteScalar();
+                Close();
+                return data;
+                
+            }
+            catch (Exception ex) { 
+                Debug.WriteLine(ex);
+                return null;
+            }
+        }
+
+        public int ExecuteNonQuery(string query)
+        {
+            SqlCommand cmd = new SqlCommand(query, conn);
+            cmd.CommandType = CommandType.Text;
+            try
+            {
+                Open();
+                int data = cmd.ExecuteNonQuery();
+                Close();
+                return data;
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                return 0;
+            }
         }
 
         public T AddRow<T>(T data)
@@ -237,33 +306,29 @@ namespace Hotel_Management
                 keys.Add(columnAttr.Name);
             }
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) OUTPUT inserted.* VALUES ({string.Join(", ", values)})";
             cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"INSERT INTO {tableAttr.Name} ({string.Join(", ", keys)}) OUTPUT inserted.* VALUES ({string.Join(", ", values)})";
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                Debug.WriteLine(cmd.CommandText);
-                SqlDataReader reader = cmd.ExecuteReader();
-                try
+                Open();
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
                         foreach (PropertyInfo property in properties)
                         {
-                            string column = ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name;
+                            ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                            if (columnAttr == null) continue;
+                            string column = columnAttr.Name;
                             object pValue = reader[column];
-                            if (column.Length == 0 || pValue.ToString().Length == 0)
+                            if (pValue.ToString().Length == 0)
                                 continue;
                             property.SetValue(result, pValue, null);
                         }
                     }
                 }
-                catch { 
-                    reader.Close();
-                }
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                Close();
             }
             catch (Exception ex)
             {
@@ -333,17 +398,15 @@ namespace Hotel_Management
             if (where.Count == 0)
                 return result;
             SqlCommand cmd = conn.CreateCommand();
-            cmd.CommandText = $"UPDATE {tableAttr.Name} SET {string.Join(", ", sets)} WHERE {string.Join(" AND ", where)}";
             cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"UPDATE {tableAttr.Name} SET {string.Join(", ", sets)} WHERE {string.Join(" AND ", where)}";
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                Debug.WriteLine(cmd.CommandText);
+                Open();
                 if (cmd.ExecuteNonQuery() != 0)
                     result = true;
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                Close();
             }
             catch (Exception ex)
             {
@@ -359,50 +422,45 @@ namespace Hotel_Management
             Type type = typeof(T);
             TableAttribute tableAttr = (TableAttribute)type.GetCustomAttribute(typeof(TableAttribute));
             if (tableAttr == null) return false;
+            List<string> where = new List<string>();
+            PropertyInfo[] properties = type.GetProperties();
+            foreach (PropertyInfo property in properties)
+            {
+                ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
+                if (columnAttr == null) continue;
+                object value = property.GetValue(obj, null);
+                Type pType = property.PropertyType;
+                object fValue = null;
+                if (columnAttr.IsPrimaryKey)
+                {
+                    if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
+                        fValue = value;
+                    else if (pType == typeof(DateTime))
+                    {
+                        DateTime dt = (DateTime)value;
+                        if (dt.Year == 1)
+                            continue;
+                        else
+                            fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
+                    }
+                    else if (pType == typeof(bool))
+                        fValue = (bool)value ? 1 : 0;
+                    else
+                        fValue = $"N'{value}'";
+                    where.Add($"{columnAttr.Name} = {fValue}");
+                }
+            }
+            if (where.Count == 0) return false;
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(" AND ", where)}";
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                List<string> where = new List<string>();
-                PropertyInfo[] properties = type.GetProperties();
-                foreach (PropertyInfo property in properties)
-                {
-                    ColumnAttribute columnAttr = (ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute));
-                    if (columnAttr == null) continue;
-                    object value = property.GetValue(obj, null);
-                    Type pType = property.PropertyType;
-                    object fValue = null;
-                    if (columnAttr.IsPrimaryKey)
-                    {
-                        if (pType == typeof(int) || pType == typeof(float) || pType == typeof(double))
-                            fValue = value;
-                        else if (pType == typeof(DateTime))
-                        {
-                            DateTime dt = (DateTime)value;
-                            if (dt.Year == 1)
-                                continue;
-                            else
-                                fValue = $"'{(DateTime)value:yyyy-MM-dd HH:mm:ss}'";
-                        }
-                        else if (pType == typeof(bool))
-                            fValue = (bool)value ? 1 : 0;
-                        else
-                            fValue = $"N'{value}'";
-                        where.Add($"{columnAttr.Name} = {fValue}");
-                    }
-                }
-                if (where.Count == 0) return false;
-                cmd.CommandText = $"DELETE FROM {tableAttr.Name} WHERE {string.Join(" AND ", where)}";
-                Debug.WriteLine(cmd.CommandText);
+                Open();
                 int result = cmd.ExecuteNonQuery();
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
-                if (result == 0)
-                    return false;
-                else
-                    return true;
+                Close();
+                return result != 0 ? true : false;
             }
             catch (Exception ex)
             {
@@ -411,7 +469,7 @@ namespace Hotel_Management
             return false;
         }
 
-        public int DeleteRows<T>(Expression<Func<T, bool>> predicate)
+        public int DeleteRows<T>(string whereCondition)
         {
             int result = 0;
             Type type = typeof(T);
@@ -419,20 +477,17 @@ namespace Hotel_Management
             if (tableAttr == null) return result;
             SqlCommand cmd = conn.CreateCommand();
             cmd.CommandType = CommandType.Text;
+            if (whereCondition.Length == 0)
+                return result;
+            else
+                whereCondition = $" WHERE {whereCondition}";
+            cmd.CommandText = $"DELETE FROM {tableAttr.Name}{whereCondition}";
+            Debug.WriteLine(cmd.CommandText);
             try
             {
-                if (conn.State == ConnectionState.Closed)
-                    conn.Open();
-                string condition = ExpressionToSql.ToSql(predicate, true);
-                if (condition.Length == 0)
-                    return result;
-                else
-                    condition = $"WHERE {condition}";
-                cmd.CommandText = $"DELETE FROM {tableAttr.Name} {condition}";
-                Debug.WriteLine(cmd.CommandText);
-                result += cmd.ExecuteNonQuery();
-                if (conn.State == ConnectionState.Open)
-                    conn.Close();
+                Open();
+                result = cmd.ExecuteNonQuery();
+                Close();
             }
             catch (Exception ex)
             {
@@ -458,110 +513,4 @@ namespace Hotel_Management
             }
         }
     }
-
-    public static class ExpressionToSql
-    {
-        public static string ToSql<T>(Expression<Func<T, bool>> expression, bool breakWhenDetectMethod = true) => new SqlExpressionVisitor().Translate(expression.Body, typeof(T), breakWhenDetectMethod);
-
-        private class SqlExpressionVisitor : ExpressionVisitor
-        {
-            private StringBuilder sb;
-            private Dictionary<string, string> columns;
-            private bool isContainsMethod = false;
-            private bool breakWhenDetectMethod = true;
-
-            private Dictionary<string, string> GetColumns(Type type)
-            {
-                Dictionary<string, string> result = new Dictionary<string, string>();
-                foreach (PropertyInfo property in type.GetProperties())
-                    result.Add(property.Name, ((ColumnAttribute)property.GetCustomAttribute(typeof(ColumnAttribute))).Name);
-                return result;
-            }
-
-            public string Translate(Expression expression, Type type, bool breakWhenDetectMethod)
-            {
-                columns = GetColumns(type);
-                this.breakWhenDetectMethod = breakWhenDetectMethod;
-                sb = new StringBuilder();
-                Visit(expression);
-                if (!isContainsMethod)
-                    return sb.ToString();
-                else
-                {
-                    if (breakWhenDetectMethod)
-                        return string.Empty;
-                    else
-                        return sb.ToString();
-                }
-            }
-
-            protected override Expression VisitBinary(BinaryExpression node)
-            {
-                sb.Append("(");
-                Visit(node.Left);
-                sb.Append($" {GetSqlOperator(node.NodeType)} ");
-                if (node.Right.Type == typeof(DateTime))
-                {
-                    var lambda = Expression.Lambda(node.Right);
-                    var value = lambda.Compile().DynamicInvoke();
-                    if (value is DateTime dateValue)
-                        sb.Append($"'{dateValue:yyyy-MM-dd HH:mm:ss}'");
-                    else
-                        sb.Append(value);
-                }
-                else
-                    Visit(node.Right);
-                sb.Append(")");
-                return node;
-            }
-
-            protected override Expression VisitMember(MemberExpression node)
-            {
-                sb.Append(columns[node.Member.Name]);
-                return node;
-            }
-
-            protected override Expression VisitConstant(ConstantExpression node)
-            {
-                if (node.Type == typeof(string))
-                    sb.Append($"N'{node.Value}'");
-                else
-                    sb.Append(node.Value);
-                return node;
-            }
-
-            protected override Expression VisitMethodCall(MethodCallExpression node)
-            {
-                isContainsMethod = true;
-                sb.Append("(1 = 1)");
-                return node;
-            }
-
-            private string GetSqlOperator(ExpressionType type)
-            {
-                switch (type)
-                {
-                    case ExpressionType.Equal:
-                        return "=";
-                    case ExpressionType.NotEqual:
-                        return "<>";
-                    case ExpressionType.GreaterThan:
-                        return ">";
-                    case ExpressionType.GreaterThanOrEqual:
-                        return ">=";
-                    case ExpressionType.LessThan:
-                        return "<";
-                    case ExpressionType.LessThanOrEqual:
-                        return "<=";
-                    case ExpressionType.AndAlso:
-                        return "AND";
-                    case ExpressionType.OrElse:
-                        return "OR";
-                    default:
-                        throw new NotSupportedException($"Operator {type} is not supported.");
-                }
-            }
-        }
-    }
-
 }
